@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Microsoft/techcasestudies#readme",
   "devDependencies": {
     "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "image-size": "^0.5.4"
   }
 }
