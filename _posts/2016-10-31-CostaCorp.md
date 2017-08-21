@@ -117,11 +117,11 @@ Next, the messages are sent to IoT Hub.
 
 4. There is input and output from IoT Hub via a QUERY that is in place to route the messages based on values.
 
-5. QUERY states from SensorIoTHub to phalerts give us the NurseryId, RowId, SensorId, Strain, MinValue, MaxValue, CurrentValue, DateCreated, SensorType, and also put everything into the Azure SQL database. The messages are then sent to Event Hubs.
+5. QUERY states from SensorIoTHub to pH alerts give us the NurseryId, RowId, SensorId, Strain, MinValue, MaxValue, CurrentValue, DateCreated, SensorType, and also put everything into the Azure SQL database. The messages are then sent to Event Hubs.
 
-6. Event Hubs are configured for phalerts and pH data.
+6. Event Hubs are configured for pH alerts and pH data.
 
-7. Event Hubs then trigger phalerts to be sent.
+7. Event Hubs then trigger pH alerts to be sent.
 
 8. We use Azure Functions in the flow to send messages via Twilio. 
 
@@ -129,7 +129,7 @@ Next, the messages are sent to IoT Hub.
 
 10. Azure Functions sends messages based on the min and max pH levels to Twilio.
 
-11. Phalert messages are then sent to the grower's mobile phone. 
+11. pH alert messages are then sent to the grower's mobile phone. 
 
 The final output sent to the mobile phone is shown in the following screenshot.
 
@@ -172,7 +172,13 @@ Costa Farms and Microsoft are working on two additional projects to complete usi
 
 - [Setting up the **hardware** for pHsensor](https://blogs.msdn.microsoft.com/blainbar/2016/10/25/hardware-assembly-for-the-adafruit-feather-m0-wifi-with-the-atlas-scientific-ph-sensor-for-remotely-monitoring-ph-water-levels-in-microsoft-azure-article-1-or-2/) 
 - [Setting up the **software** for pHsensor](https://blogs.msdn.microsoft.com/blainbar/2016/10/25/setting-up-software-for-the-adafruit-feather-m0-wifi-using-the-arduino-ide-and-c-code-for-remotely-monitoring-ph-sensors-in-microsoft-azure-article-2-of-2)
-- [![Costa Farms Video](http://img.youtube.com/vi/xVkgiIojwCc/0.jpg)](http://www.youtube.com/watch?v=xVkgiIojwCc)
+
+<br/>
+
+[![Costa Farms Video](http://img.youtube.com/vi/xVkgiIojwCc/0.jpg)](http://www.youtube.com/watch?v=xVkgiIojwCc)
+
+<br/>
+
 - Explore [Azure IoT Hub documentation](https://docs.microsoft.com/en-us/azure/iot-hub/)
 - Find IoT devices and starter kits: [Azure IoT device catalog](https://catalog.azureiotsuite.com/kits)
 - Try any Azure services for free: [Create your free Azure account today](https://azure.microsoft.com/en-us/free/)
