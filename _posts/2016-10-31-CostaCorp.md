@@ -188,3 +188,4 @@ Costa Farms and Microsoft are working on two additional projects to complete usi
 - Try any Azure services for free: [Create your free Azure account today](https://azure.microsoft.com/en-us/free/)
 - Check out a curated collection of IoT learning resources: [Microsoft Technical Community Content](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/IoT) on GitHub
 - Read more IoT-focused [technical case studies](https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured) (like this one)
+
