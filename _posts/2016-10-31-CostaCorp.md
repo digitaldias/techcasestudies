@@ -22,8 +22,8 @@ This article showcases IoT setup for Costa Farms using the Atlas Scientific pH S
 
 - [Microsoft Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/)
 - [Adafruit Feather M0 WiFi](https://www.adafruit.com/product/3010)
-- [Atlas Scientific pH Sensor]()
-- [Arduino IDE]()
+- [Atlas Scientific pH Sensor](https://www.atlas-scientific.com/ph.html)
+- [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 - [Azure Stream Analytics](https://azure.microsoft.com/en-us/services/stream-analytics/)
 - [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/)
 - [Azure Functions](https://azure.microsoft.com/en-us/services/functions/)
@@ -62,6 +62,8 @@ This solution uses Azure IoT Hub with pH sensor devices on hydro water systems t
 Following is the overall flow of the system, which we'll discuss in detail.
 
 ![System flow]( {{ site.baseurl }}/images/CostaIoT1.PNG)
+
+<br/>
 
 There are multiple technologies for this particular IoT solution. 
 
@@ -146,6 +148,8 @@ Following are some of the plants that are grown at Costa Farms.
 ### Solution architecture
 
 ![Solution architecture]( {{ site.baseurl }}/images/CostaIoT1.PNG)
+
+<br/>
 
 ### Device used and code artifacts
 
