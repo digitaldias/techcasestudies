@@ -15,10 +15,20 @@ sticky: false
 ---
 
 The most important action for a seismic warning system is to alert users as quickly as possible. An added value is to be able to alert with some precision on the intensity of the coming earthquake and to withhold alerts from areas where it will not be felt. Microsoft teamed up with SkyAlert to help them improve and expand their alert system using an IoT solution. 
+
+**Key technologies used:**
+
+- [Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/)
+- [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/)
+- [Windows 10 IoT Core](https://developer.microsoft.com/en-us/windows/iot)
+- [Azure WebJobs](https://docs.microsoft.com/en-us/azure/app-service-web/websites-webjobs-resources) 
+- [Azure Stream Analytics](https://azure.microsoft.com/en-us/services/stream-analytics/)
+- [Azure Blob storage](https://azure.microsoft.com/en-us/services/storage/blobs/)
+- [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
  
 ## Customer profile ##
 
-The SkyAlert platform is the only one in the world that will alert you and advise you on what to do before, during, and after an earthquake. It specializes in real-time reporting on seismic and volcanic issues. It detects, processes, and sends earthquake alert notifications through its own devices.
+The [SkyAlert](http://skyalert.mx/en/) platform alerts you and advises you on what to do before, during, and after an earthquake. It specializes in real-time reporting on seismic and volcanic issues. It detects, processes, and sends earthquake alert notifications through its own devices.
  
 ## Pain point ##
 
@@ -32,7 +42,7 @@ The plan was to implement a smart device with an Internet connection, which woul
 
 ## Architecture ##
 
-This architecture diagram represents the three main logical blocks of the solution where the “Device connectivity” layer shows how user devices connect to Azure Services such as IoT Hub and Event Hub. The “Data processing” layer represents all the logical components to process, store, analyze, and manage data. And the “Presentation layer” shows dashboards and control panels for device monitoring, device management, telemetry data, and general user information. 
+This architecture diagram represents the three main logical blocks of the solution, where the **device connectivity** layer shows how user devices connect to Azure services such as [IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/) and [Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/). The **data processing** layer represents all the logical components to process, store, analyze, and manage data. And the **presentation** layer shows dashboards and control panels for device monitoring, device management, telemetry data, and general user information. 
 
 ![Architecture]({{ site.baseurl }}/images/Architecture.png)
 
@@ -46,13 +56,13 @@ SkyAlert implements a solution for consumer IoT devices. That is why the paramet
 3. Object type
 4. IoT Hub properties
 
-The first field involves the unique device ID that identifies it, data such as creation date, device status, firmware version, type of connection (LAN, WLAN), MAC address, IP address, hardware model, user that has been logging on, status of the query, length, region to which it belongs within the geographic zones to alert, connection status, and a field that helps identify when the last metadata was updated.
+The first field, **device properties**, involves the unique device ID that identifies it, data such as creation date, device status, firmware version, type of connection (LAN, WLAN), MAC address, IP address, hardware model, user that has been logging on, status of the query, length, region to which it belongs within the geographic zones to alert, connection status, and a field that helps identify when the last metadata was updated.
 
-Commands are a way of expressing messages that may include certain parameters, to be sent to the devices. Each device can have different commands, according to the needs of the users. However, all share the alert, test, and deployment of messages. 
+**Commands** are a way of expressing messages, which may include certain parameters, to be sent to the devices. Each device can have different commands, according to the needs of the users. However, all share the alert, test, and deployment of messages. 
 
-The Object type helps us to process the data in the stream processors. This helps us determine if it is an object of type metadata, telemetry, or alerts. And more specifically, it helps us to know if it is a device of production, development, or testing.
+The **object type** helps us to process the data in the stream processors. This helps us determine if it is an object of type metadata, telemetry, or alerts. And more specifically, it helps us to know if it is a device of production, development, or testing.
 
-The properties of the IoT Hub involve data that is created with the help of the registry manager, and stored in the device data model for administrative purposes within our device portal.
+The **properties of the IoT Hub** involve data that is created with the help of the registry manager, and stored in the device data model for administrative purposes within our device portal.
 
 The data model looks as follows:
 
@@ -102,8 +112,9 @@ The SkyAlert devices send different types of packages, according to the data tha
 
 ![Datastreams]({{ site.baseurl }}/images/DataStreams.png)
 
+<br/>
 
-Each of these are messages that are sent to the cloud, but they have separate functions. The metadata is sent every time there is a change in the properties of the device—that is, each change to position, network, user logon, restarting, deleting, and so on.
+All of these are messages that are sent to the cloud, but they have separate functions. The metadata is sent every time a change occurs in the properties of the device—that is, each change to position, network, user logon, restarting, deleting, and so on.
 
 The second parameter is a packet that is sent every 5 minutes to report the temperature, pressure, and humidity read by the device.
 
@@ -119,7 +130,7 @@ The first three are sent to stream processors that take real-time actions on the
 ![Device connectivity]({{ site.baseurl }}/images/DeviceConnectivity.png)
 
 
-SkyAlert devices are designed to connect via a WLAN. Each device has the ability to work with the IP protocol, which gives us many advantages in terms of connectivity solutions because we do not need to use a field gateway—we do a direct connection between the devices and the gateway in the cloud. Raspberry Pi 3 is used as the IoT device hardware running Windows 10 IoT Core.
+SkyAlert devices are designed to connect via a WLAN. Each device has the ability to work with the IP protocol, which gives us many advantages in terms of connectivity solutions because we do not need to use a field gateway—we do a direct connection between the devices and the gateway in the cloud. Raspberry Pi 3 is used as the IoT device hardware running [Windows 10 IoT Core](https://developer.microsoft.com/en-us/windows/iot).
 
 Within the services of Azure we find the IoT Hub very well-suited to our needs. It allows us to have bidirectional communication in a safe way, with the robustness to connect millions of devices.
 
@@ -131,22 +142,22 @@ The provisioning is done from our administration portal through the API and Azur
 
 For SkyAlert, it is very important to save a log with all the changes that can be generated in the device, mainly its connection status with the IoT Hub. Taking advantage of the device state store of the IoT Hub, we check the connection status of each device enabled. If there is any change with respect to the previously reported status, it is stored.
 
-A WebJob is responsible for performing this process. It constantly checks the current connection status and compares it to a previously stored one. If the connection status changes for the device, two actions are executed: first, the current status is registered in DocumentDB and second, a new log is stored in Azure Blob storage
+A [WebJob](https://docs.microsoft.com/en-us/azure/app-service-web/websites-webjobs-resources) is responsible for performing this process. It constantly checks the current connection status and compares it to a previously stored one. If the connection status changes for the device, two actions are executed: first, the current status is registered in DocumentDB and second, a new log is stored in Azure Blob storage.
 
 
 ### Data flow and stream processing ###
 
-Azure Stream Analytics is a tool that helps us with the flow of data. Practically all the information we collect goes through a work of Stream Analytics. The telemetry arrives from the devices to the IoT Hub and passes through Stream Analytics to be stored in Azure Blob storage.
+[Azure Stream Analytics](https://azure.microsoft.com/en-us/services/stream-analytics/) is a tool that helps us with the flow of data. Practically all the information we collect goes through a work of Stream Analytics. The telemetry arrives from the devices to the IoT Hub and passes through Stream Analytics to be stored in [Azure Blob storage](https://azure.microsoft.com/en-us/services/storage/blobs/).
 
-The metadata goes through the same process. However, its destination is an Event Hub, which takes them to a WebJob that will be in charge of updating the document that corresponds to the device associated with such metadata. Logs are passed directly from each device to a Blob storage.
+The metadata goes through the same process. However, its destination is an event hub, which takes them to a WebJob that will be in charge of updating the document that corresponds to the device associated with such metadata. Logs are passed directly from each device to Blob storage.
 
-All of this is on the part of the user devices. But we also collect information from the sensors that are responsible for the detection of earthquakes. They are constantly sensing what is happening in their location and taking readings of seismic activity. This data arrives at the SkyAlert seismic detection network, where it is processed, but at the same time, a fork causes the readings to be sent through an Event Hub.
+All of this is on the part of the user devices. But we also collect information from the sensors that are responsible for the detection of earthquakes. They are constantly sensing what is happening in their location and taking readings of seismic activity. This data arrives at the SkyAlert seismic detection network, where it is processed, but at the same time, a fork causes the readings to be sent through an event hub.
 
-The data of the sensors that travel through the Event Hub arrives at a work of Stream Analytics that connects it with two outputs under certain business rules. The first one is storage, where each log that arrives is taken to a file in Azure Blob storage. The second is a Machine Learning job, only for data that has exceeded the thresholds established in the rules of Stream Analytics.
+The data of the sensors that travel through the event hub arrives at a work of Stream Analytics that connects it with two outputs under certain business rules. The first one is storage, where each log that arrives is taken to a file in Azure Blob storage. The second is a machine learning job, only for data that has exceeded the thresholds established in the rules of Stream Analytics.
 
-There is another communication channel through the Event Hub: REDSSA processes the sensor data and determines which devices should receive an alert message. These messages, preprocessed by REDSSA, arrive via an Event Hub to a WebJob where a query is made to devices that need to be alerted and the message is sent to them.
+There is another communication channel through the event hub: REDSSA (Red de Sensores Sismicos SkyAlert) processes the sensor data and determines which devices should receive an alert message. These messages, preprocessed by REDSSA, arrive via an event hub to a WebJob where a query is made to devices that need to be alerted and the message is sent to them.
 
-To use the devices, each user must have an account within the SkyAlert platform. Data such as username, password, other personal information, the device with which the account is associated, and payment information are stored in a SQL Database within the Microsoft Azure services.
+To use the devices, each user must have an account within the SkyAlert platform. Data such as username, password, other personal information, the device with which the account is associated, and payment information are stored in a SQL database within the Microsoft Azure services.
 
 ### Security ###
 
@@ -160,37 +171,44 @@ This perfectly fit our needs in data transmission, so that data such as telemetr
 
 The same thing happens when we send data from cloud to devices, using the security protocols offered by the Azure IoT Hub and the messaging acknowledgment system. We can get delivery confirmation even when a message is not sent by our system so that we can identify when a false alarm has been sent from an unknown source.
 
-User data is encrypted for the authentication process for device metadata. We only encrypt userId so that is the unique field. In this datamodel that relates a device with user information, we have to protect as much as possible. We don’t find the need to encrypt the other metadata since we see a safe way of transport in the IoT Hub and it is safely stored in the DocumentDB.
+User data is encrypted for the authentication process for device metadata. We only encrypt userId so that is the unique field. In this data model that relates a device with user information, we have to protect as much as possible. We don’t find the need to encrypt the other metadata because we see a safe way of transport in the IoT Hub and it is safely stored in the DocumentDB.
 
-In case of earthquake alerts, we have a confirmation system. Actually, this system is REDSSA (Red de Sensores Sismicos SkyAlert), reading data from sensors and processing information in order to deliver alerts about potentially dangerous earthquakes.
+In case of earthquake alerts, we have a confirmation system. This system is REDSSA, reading data from sensors and processing information in order to deliver alerts about potentially dangerous earthquakes.
 
-In case of gas and fire alarms, they have a hardware and software adjusted threshold so that the only way to trigger an alert is by exceeding the threshold. The sensors can have a margin of error and a risk of false alarms.
-
+In case of gas and fire alarms, they have a hardware- and software-adjusted threshold so that the only way to trigger an alert is by exceeding the threshold. The sensors can have a margin of error and a risk of false alarms.
 
 ### Solution UX ###
 
-There are two parts within the user experience. The first is a UWP app running on Windows 10 IoT core, where the user can log on to receive the services of the SkyAlert platform. On the screen, they can see a weather forecast, device sensor readings, seismic alert logs, and volcano status.
+There are two parts within the user experience. The first is a UWP app running on Windows 10 IoT Core, where the user can log on to receive the services of the SkyAlert platform. On the screen, they can see a weather forecast, device sensor readings, seismic alert logs, and volcano status.
 
-Starting screen
+**Starting screen**
 
 ![Home screen]({{ site.baseurl }}/images/Home.PNG)
 
-Earthquake screen
+<br/>
+
+**Earthquake screen**
 
 ![Sismos]({{ site.baseurl }}/images/Sismos.PNG)
 
-Weather screen
+<br/>
+
+**Weather screen**
 
 ![Storm]({{ site.baseurl }}/images/Storm.PNG)
 
-Volcano screen
+<br/>
+
+**Volcano screen**
 
 ![Volcano]({{ site.baseurl }}/images/Volcanes.PNG)
 
+<br/>
+
 The second part is the administration portal, which is based on the Azure App Service. A website developed in ASP.NET MVC 5, where users are registered, administers the provisioning, messages, logs, and activity of the devices. It consists of four fundamental elements:
 
-1. Device Monitoring
-2. Device Administration
+1. Device monitoring
+2. Device administration
 3. Telemetry
 4. Users
 
@@ -199,6 +217,8 @@ The monitoring of the devices is through a map, with colored dots indicating whi
 Because the portal has two levels of access—administrator and users—the dashboard deploys administrators to all devices per zone while users deploy the devices associated with their account alone.
 
 ![Dashboard]({{ site.baseurl }}/images/dashboard.PNG)
+
+<br/>
 
 Device management is what allows you to create, delete, enable or disable devices, create a massive and personalized way for our production line, generate files with keys and encrypted to be embedded directly in the application of the dispositives. Telemetry allows us to view temperature, pressure, and humidity data by device, by region or in general of all data coming from devices. 
 
@@ -210,34 +230,31 @@ On the other hand, data analysis is done through a dataset we designed. This dat
 
 With the combination of the clusters where the sensors are located, the range of intensities that can be thrown by the sensors in shindo and Wales for the P wave, we obtain a fixed dataset of approximately 4,000 rows.
 
-This is evaluated by a predictive model in Azure Machine Learning, supported by a boosted decision tree. It becomes a temporary solution as the dataset of historical values grows. These historical values that are planned to be evaluated in the future are earthquakes presented with their respective intensity and places that were affected.
+This is evaluated by a predictive model in [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/), supported by a boosted decision tree. It becomes a temporary solution as the dataset of historical values grows. These historical values that are planned to be evaluated in the future are earthquakes presented with their respective intensity and places that were affected.
 
-We have two datasets that compose the predictive model: the readings of the SkyAlert sensors stored in Blobs and the accelerometer registers of the devices also stored in the same service. Together they make a relation output for the dataset to evaluate in the next predictive model.
-
+We have two datasets that compose the predictive model: the readings of the SkyAlert sensors stored in blobs and the accelerometer registers of the devices, also stored in the same service. Together they make a relation output for the dataset to evaluate in the next predictive model.
 
 ## Device used and code artifacts
 
-The entire platform of the device runs on a Raspberry Pi 2 with Windows 10 IoT core version 14393, and runs a universal headed application. We use the I2C connection to connect to the following sensors:
+The entire platform of the device runs on a Raspberry Pi 2 with Windows 10 IoT Core version 14393, and runs a universal headed application. We use the I2C connection to connect to the following sensors:
 
 1. Temperature + pressure + humidity
 2. Accelerometer
 3. Microcontroller
 
-We also use a serial communication for a Zigbee module which in turn communicates wirelessly with gas and smoke sensors.
+We also use a serial communication for a Zigbee module that in turn communicates wirelessly with gas and smoke sensors.
 
-It uses a 7-inch capacitive TFT touchscreen and a pair of speakers for playback of alerts. Everything is assembled on a printed circuit board that includes a voltage regulating stage to power the audio amplifier, Raspberry, and screen.
+It uses a 7-inch capacitive TFT touchscreen and a pair of speakers for playback of alerts. Everything is assembled on a printed circuit board that includes a voltage-regulating stage to power the audio amplifier, Raspberry, and screen.
 
 ![Device]({{ site.baseurl }}/images/Device.png)
 
 The device is also able to triangulate its location through an API for geolocation using the Wi-Fi networks that are around it. In turn, it also consumes a weather API to give reports on the temperature and humidity of its city, forecast by days and time. SkyAlert has services in the cloud where images of the volcanos Popocatépetl, Iztaccíhuatl, and Colima are stored, retrieved through a URL and deployed in the application. Also, the historical data of the most recent earthquakes is stored and we recover them in the same way to be deployed.
 
-
 ## Opportunities going forward ##
 
-With many geographically distributed devices collecting information on climate, earthquake intensity information becomes extremely valuable as it can be the most extensive database on weather and earthquake data, allowing us to create predictive models to give more accurate notice and to send earthquake warnings in a personalized way to each device.
+With many geographically distributed devices collecting information on climate, earthquake intensity information becomes extremely valuable because it can be the most extensive database on weather and earthquake data, allowing us to create predictive models to give more accurate notice and to send earthquake warnings in a personalized way to each device.
 
 It can also offer more complete civil protection solutions for buildings, industrial buildings, schools, and so on, with fire and gas sensors distributed throughout the facilities and with storm forecasting and seismic alerts.
-
 
 ## Conclusion ##
 
@@ -247,11 +264,11 @@ SkyAlert's solution will cover 100 percent of the areas under seismic risk in Me
 
 ## Additional resources
 
-- Explore [Azure IoT Hub documentation](https://docs.microsoft.com/en-us/azure/iot-hub/)
-- Find IoT devices and starter kits: [Azure IoT device catalog](https://catalog.azureiotsuite.com/kits)
-- Try any Azure services for free: [Create your free Azure account today](https://azure.microsoft.com/en-us/free/)
-- Check out a curated collection of IoT learning resources: [Microsoft Technical Community Content](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/IoT) on GitHub
-- Read more IoT-focused [technical case studies](https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured) (like this one)
+- Explore [Azure IoT Hub documentation](https://docs.microsoft.com/en-us/azure/iot-hub/).
+- Find IoT devices and starter kits: [Azure IoT device catalog](https://catalog.azureiotsuite.com/kits).
+- Try any Azure services for free: [Create your free Azure account today](https://azure.microsoft.com/en-us/free/).
+- Check out a curated collection of IoT learning resources: [Microsoft Technical Community Content](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/IoT) on GitHub.
+- Read more IoT-focused [technical case studies](https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured) (like this one).
 
 <!-- Contents -->
 [architecture]: /images/Architecture.png "Architecture"
