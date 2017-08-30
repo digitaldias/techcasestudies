@@ -264,7 +264,7 @@ A lot of very interesting ideas on how to improve the process were discussed dur
 
 ## Additional resources ##
 
-* ![The value stream mapping in HD]({{site.baseurl}}/images/orckestra_VSM_HD.jpg)
+* [The value stream mapping in HD]({{site.baseurl}}/images/orckestra_VSM_HD.jpg)
 * [Orchestrating containers with Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/2016/04/25/orchestrating-containers-with-service-fabric/)
 * [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/)
 * [Running Docker Swarm on Microsoft Azure (Channel 9)](https://channel9.msdn.com/Blogs/containers/Docker-Swarm-Part-1)
