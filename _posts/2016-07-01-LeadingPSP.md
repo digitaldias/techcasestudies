@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learning from a DevOps Hackfest with a Leading Professional Services Provider"
+title: "With DevOps, a professional services provider better integrates teams and processes"
 author: "Rasmus Hald"
 author-link: "#"
 #author-image: "{{ site.baseurl }}/images/authors/photo.jpg"
@@ -8,22 +8,23 @@ date: 2016-07-01
 categories: [DevOps]
 color: "blue"
 image: "images/feat_LeadingPSP_1.png"
-excerpt: In this DevOps Hackfest, Microsoft teamed up with a leading provider of professional services to improve their development processes with a focus on automated testing and release management. We describe the process and the result in this article.
+excerpt: In this DevOps hackfest, Microsoft teamed up with a leading provider of professional services to improve their development processes with a focus on automated testing and release management. 
 verticals: [Professional Services]
 language: [English]
 #geolocation: []
 #permalink: /<page-title>.html
 ---
 
-When a leading multinational professional services provider was looking for ways to improve their development processes, they met with Microsoft to discuss how DevOps could help. Together, they staged a DevOps Hackfest to implement DevOps practices, with a focus on automated testing and release management. 
+When a leading multinational professional services provider was looking for ways to improve their development processes, they met with Microsoft to discuss how DevOps could help. Together, they staged a DevOps hackfest to implement DevOps practices, with a focus on automated testing and release management. 
+
 This article describes the results and how a “DevOps Duo” is now the new normal for this professional services provider (PSP). The DevOps Duo concept brings together two engineers—one each from the development and the deployment teams—who are jointly responsible for the lifecycle of a given application.
 
 ## Customer profile ##
 
-This customer is a leading provider of professional services to clients in multiple industries worldwide.
-Their IT department manages a large codebase and many applications, both big and small. A large part of this codebase was written prior to current practices and by people who may no longer be with the company. This is known as “legacy code” because it is not up to the standards of current development practices.
-We (Microsoft) met with this PSP to discuss how DevOps can help them accelerate their development of software and push more ideas through to users. At the time, they had already started to change how they work and were implementing some good DevOps practices.
-Based on these talks, we decided to team up with them to hack these challenges. The joint hack team spent three days in April 2016 working on solutions.
+This customer is a leading provider of professional services to clients in multiple industries worldwide. Their IT department manages a large code base and many applications, both big and small. A large part of this code base was written prior to current practices and by people who may no longer be with the company. This is known as “legacy code” because it is not up to the standards of current development practices.
+
+We (Microsoft) met with this PSP to discuss how DevOps can help them accelerate their development of software and push more ideas through to users. At the time, they had already started to change how they work and were implementing some good DevOps practices. Based on these talks, we decided to team up with them to hack these challenges. The joint hack team spent three days in April 2016 working on solutions.
+
 The joint team consisted of five contributors from the PSP along with the following technical evangelists from Microsoft:  
   
 - Aleksandar Djordjevic  
@@ -31,14 +32,13 @@ The joint team consisted of five contributors from the PSP along with the follow
 - Clemens Schotte  
 - Rasmus Hald  
 
-
 ## Problem statement ##
 
-We quickly concluded that we needed to conduct a Value Stream Mapping exercise to help the PSP identify where time was wasted in the development process. [Value Stream Mapping](https://en.wikipedia.org/wiki/Value_stream_mapping) is a 4- to 6-hour workshop that maps out how the teams involved in application development and delivery work, starting from the conception of an idea for a feature to getting it into production and use.
+We quickly concluded that we needed to conduct a value stream mapping exercise to help the PSP identify where time was wasted in the development process. [Value stream mapping](https://en.wikipedia.org/wiki/Value_stream_mapping) is a 4- to 6-hour workshop that maps out how the teams involved in application development and delivery work, starting from the conception of an idea for a feature to getting it into production and use.
 
-The following diagram shows the outcome of the Value Stream Mapping exercise at this PSP; the red notes are the identified areas of improvement. From this exercise we learned that this organization had challenges with testing and the release process.
+The following diagram shows the outcome of the value stream mapping exercise at this PSP; the red notes are the identified areas of improvement. From this exercise we learned that this organization had challenges with testing and the release process.
 
-![]({{site.baseurl}}/images/LeadingPSP_1.png)
+![Leading PSP 1]({{site.baseurl}}/images/LeadingPSP_1.png)
 
 Testing had several challenges:  
 
@@ -61,10 +61,12 @@ With release management, the PSP deployed every application to six different sta
 Although all of these environments were automatically deployed through a comprehensive scripting system, all deployments were executed manually with no central way of knowing what changes were deployed to which environment.
 
 ## Solutions, steps, and delivery ##
+
 The team split into two tracks, with one focusing on automated testing and the other on release management.
 
 ### Automated testing ###
-Automated testing was a central improvement point discovered during the Value Stream Mapping exercise. The team outlined the basics of automated software and agreed on a strategy for implementing automated testing as part of software delivery.
+
+Automated testing was a central improvement point discovered during the value stream mapping exercise. The team outlined the basics of automated software and agreed on a strategy for implementing automated testing as part of software delivery.
 
 Testing strategy:
    
@@ -78,7 +80,6 @@ Testing strategy:
 As a result, development sprints might deliver fewer features, but the quality will be higher. It will mean less time fixing bugs in the long run.
  
 Types of tests:  
-  
 
 - **Unit test.** A method of testing the function in the source code.  
 - **Integration test.** Similar to a unit test, but a test of the integration between different modules in the source code.  
@@ -87,7 +88,6 @@ Types of tests:
 The hack team focused on automated unit testing and integrating that to the existing code base. This process takes time in order to access existing code and understand its functions. Only then can the test writing begin.
  
 Below is a simple example of a unit test written in Microsoft Visual Studio (real code removed to protect IP).
-
 
 
     using System;
@@ -110,12 +110,19 @@ Below is a simple example of a unit test written in Microsoft Visual Studio (rea
     Assert.AreEqual(1, 1);
     }
 
+<br/>
+
 Here is a sample of a real test execution at a developer workstation:
-![]({{site.baseurl}}/images/LeadingPSP_2.png)
 
-Tests were then submitted to the codebase as part of the source code and sent to a central repository. For the Hackfest, the team used Visual Studio Team Services (VSTS) to run the tests as part of the build process. In a DevOps world, this is called *Continuous Integration*.
+<br/>
 
-#### Just-in-time Continuous Integration in the cloud ####
+![Leading PSP 2]({{site.baseurl}}/images/LeadingPSP_2.png)
+
+<br/>
+
+Tests were then submitted to the code base as part of the source code and sent to a central repository. For the hackfest, the team used Visual Studio Team Services to run the tests as part of the build process. In a DevOps world, this is called *continuous integration*.
+
+#### Just-in-time continuous integration in the cloud ####
 
 When it comes to more frequent deliveries, having automated testing in place is key. In today’s world, great tools exist to support the different types of testing, and teams build systems to run those tests to ensure the quality of the code they are delivering.
 
@@ -125,25 +132,23 @@ As the maturity of the cloud grows, we can now leverage the elasticity of cloud 
 
 At this PSP, it was central to the code quality that we could mimic a close-to-real-life system that included front-end servers as well as back-end Microsoft SQL Server-based servers. Instead of purchasing a new set of physical servers, we chose to use Microsoft Azure as an infrastructure for running automated tests, creating the needed environment prior to executing the tests, only to delete the infrastructure again 6 minutes later.
 
-The team chose Visual Studio Team Services to implement a solution that could run an entire Continuous Integration process including build, infrastructure deployment and removal, and automated testing and reporting, delivering a set of deployable artifacts. In this solution, everything from build servers to database infrastructure would be hosted in Microsoft Azure.
+The team chose Visual Studio Team Services to implement a solution that could run an entire continuous integration process including build, infrastructure deployment and removal, and automated testing and reporting, delivering a set of deployable artifacts. In this solution, everything from build servers to database infrastructure would be hosted in Microsoft Azure.
 
-#### The Continuous Integration process ####
+#### The continuous integration process ####
 
 The first step was to download the source code and all necessary dependencies:
 
-**Visual Studio Build (aka MSBuild).** Compiles the code using the MSBuild engine and packages it into a deployable unit for later use.
+- **Visual Studio Build (aka MSBuild).** Compiles the code using the MSBuild engine and packages it into a deployable unit for later use.
+- **Azure Resource Group Deployment.** Builds an Azure SQL Server and attached database.
+- **PowerShell.** Used to import dummy data to the database for testing.
+- **Visual Studio Test.** Runs a long series of automatic unit tests as well as UI tests.
+- **Publish Test Results.** Creates a report with the outcome of the test as well as detailed logging.
+- **Azure Resource Group Deployment.** Removes the SQL Server and all data, and cleans up the entire deployment created earlier.
 
-**Azure Resource Group Deployment.** Builds an Azure SQL Server and attached database.
+<br/>
 
-**PowerShell.** Used to import dummy data to the database for testing.
+![Leading PSP 3]({{site.baseurl}}/images/LeadingPSP_3.png)
 
-**Visual Studio Test.** Runs a long series of automatic unit tests as well as UI tests.
-
-**Publish Test Results.** Creates a report with the outcome of the test as well as detailed logging.
-
-**Azure Resource Group Deployment.** Removes the SQL Server and all data, and cleans up the entire deployment created earlier.
-
-![]({{site.baseurl}}/images/LeadingPSP_3.png)
 
 The rest of the build tasks then clean up the environment and publish build artifacts to Visual Studio Team Services (for later deployment).
 
@@ -151,7 +156,9 @@ The result of using a cloud-hosted build system is that all testing runs in the 
 
 The automated test runs for 6-7 minutes in this case and the use of a SQL Server in Azure takes about 5 minutes.
 
-![]({{site.baseurl}}/images/LeadingPSP_4.png)
+![Leading PSP 4]({{site.baseurl}}/images/LeadingPSP_4.png)
+
+<br/>
 
 This is an example of an Azure Resource Manager deployment template for creating an Azure SQL instance:
 
@@ -257,19 +264,23 @@ This is an example of an Azure Resource Manager deployment template for creating
     }
     }
 
-Release management
+<br/>
 
-The PSP has a fully automated deployment model, but as the Value Stream Mapping exercise showed, every delivery still had to be handled manually without any linkage to the features being deployed and their status in the delivery process. The hack team decided to showcase the release management capabilities in Visual Studio Team Services (VSTS) that would simply link everything together and give a better outlook of the delivery statuses.
+### Release management
 
-![]({{site.baseurl}}/images/LeadingPSP_5.png)
+The PSP has a fully automated deployment model, but as the value stream mapping exercise showed, every delivery still had to be handled manually without any linkage to the features being deployed and their status in the delivery process. The hack team decided to showcase the release management capabilities in Visual Studio Team Services that would simply link everything together and give a better outlook of the delivery statuses.
 
-By implementing a release management solution, the team was able to automate the deployment task execution, leveraging the existing PowerShell-based deployment model. This was done by adding deployment scripts to the application source code and having VSTS execute the script with environment-specific parameters, and repeating that task for every environment in the deployment cycle, with a different set of script arguments.
+![Leading PSP 5]({{site.baseurl}}/images/LeadingPSP_5.png)
+
+
+By implementing a release management solution, the team was able to automate the deployment task execution, leveraging the existing PowerShell-based deployment model. This was done by adding deployment scripts to the application source code and having Visual Studio Team Services execute the script with environment-specific parameters, and repeating that task for every environment in the deployment cycle, with a different set of script arguments.
 
 This will give the PSP an automated deployment model, where no scripts are run manually. It has a built-in approval process that dictates when a given release can be deployed to the next environment, and every approval is documented for future reference.
 
 The solution also clearly shows what releases (and features) are currently deployed to each environment by linking work items from Visual Studio´s work management system. This enables product owners to get an overview of when features will be delivered to production. Below is a sample of an application release, and the view of how far a given release is through the deployment pipeline.
 
-![]({{site.baseurl}}/images/LeadingPSP_6.png)
+![Leading PSP 6]({{site.baseurl}}/images/LeadingPSP_6.png)
+
 
 With this model in place, the PSP is leveraging cloud-based build, test, and release management tools and deploying to an on-premises hosted environment. This means all customer data is hosted on their own infrastructure, without ever touching the cloud. We achieved this by leveraging the build agent system in Visual Studio Team Services, and deploying an agent to a server on-premises that will work as a deployment server and push new releases to the environments.
 
@@ -292,6 +303,16 @@ It also will enable a better segregation of duties and improve security, as fewe
 
 The new release management workflow is self-documenting. Prior to implementing this solution, change requests were created in a ticketing system and information about the actual releases were transferred between Dev and Ops via email. With release management, work items (changes) are linked to the actual release together with the people who worked on a given change. 
 
-The outcome of the Hackfest will be used as a showcase to inspire other teams on how to do deployment.
+The outcome of the hackfest will be used as a showcase to inspire other teams on how to do deployment.
 
-*Author: Rasmus Hald, Microsoft Technical Evangelist*
+## Additional resources
+
+- [DevOps Practices](http://www.itproguy.com/2015/06/26/devops-practices/)
+- [Microsoft Azure](https://azure.microsoft.com/)
+- [Visual Studio Team Services](https://www.visualstudio.com/team-services/)
+- [PowerShell](https://msdn.microsoft.com/en-us/powershell/)
+- [Value stream mapping](https://en.wikipedia.org/wiki/Value_stream_mapping)
+
+
+
+
