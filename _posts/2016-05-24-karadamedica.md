@@ -106,7 +106,7 @@ Before beginning the hackfest, we conducted a value stream mapping exercise to h
 
 *Figure 2. Value stream mapping*
 
-![]({{site.baseurl}}/images/karadamedica2.jpg)
+![Value stream mapping]({{site.baseurl}}/images/karadamedica2.jpg)
 
 <br/>
 
@@ -193,7 +193,7 @@ Then we moved on to Web Apps. They were using Cloud Services for web and batch e
 
 <br/>
 
-Using Team Services, we successfully created a build definition for Web Apps. However, our current application was for Cloud Services. When we tried to deploy it to Web Apps, we encountered an error: "Conflict: Website with given name xxx-webapps already exists." It was unusual, but it was a known bug. (See [Azure Deployment to Web App - Conflict: Website with given name (web app name) already exists](https://social.msdn.microsoft.com/Forums/en-US/c0f6a4d8-a307-466c-ba75-5b292663d43b/azure-deployment-to-web-app-conflict-website-with-given-name-web-app-name-already-exists?forum=TFService).) We set the Remove Visual Studio version to 2013 and switched Remote debugging off and on. Then we were able to deploy apps on Web Apps.
+Using Team Services, we successfully created a build definition for Web Apps. However, our current application was for Cloud Services. When we tried to deploy it to Web Apps, we encountered an error: "Conflict: Website with given name xxx-webapps already exists." It was unusual, but it was a known bug. (See [Azure Deployment to Web App - Conflict: Website with given name already exists](https://social.msdn.microsoft.com/Forums/en-US/c0f6a4d8-a307-466c-ba75-5b292663d43b/azure-deployment-to-web-app-conflict-website-with-given-name-web-app-name-already-exists?forum=TFService).) We set the Remove Visual Studio version to 2013 and switched Remote debugging off and on. Then we were able to deploy apps on Web Apps.
 
 *Figure 8. Application settings for the "already exists" problem*
 
@@ -228,3 +228,15 @@ We learned that with collaboration among Dev, Ops, Product Owner, Business Owner
 We’ve seen improvements from applying value stream mapping analysis and using it to change the processes and rules. Outsourcing of release no longer is needed, which is a tremendous value to the business. And since release is fully automated and stable, they can avoid human error. The transition from Cloud Services to Web Apps generates both less work and greater achievement.
  
 Hiroomi Hayashi, the CEO of Karadamedica, said he was impressed with the reduction in lead time and the changes in processes and rules. He said Karadamedica used to have a cultural pattern of following instruction. Now, he said, the teams feel freer to think for themselves and come up with their own solutions.  
+
+## Additional resources ##
+
+- [Value stream mapping](https://en.wikipedia.org/wiki/Value_stream_mapping)
+- [DevOps practices](http://www.itproguy.com/2015/06/26/devops-practices/)
+- [Web Apps](https://azure.microsoft.com/en-us/services/app-service/web/?b17.09&WT.srch=1&WT.mc_id=AID559320_SEM_XFXIcmXA&lnkd=Bing_Nonbrand)
+- [Azure Resource Manager](https://azure.microsoft.com/en-us/features/resource-manager/)
+- [Visual Studio Team Services](https://azure.microsoft.com/en-us/services/visual-studio-team-services/)
+- [Power BI](https://powerbi.microsoft.com/en-us/?&WT.srch=1&wt.mc_id=AID623317_SEM_w6bTnkTf)
+
+
+
