@@ -120,16 +120,13 @@ The Illinois Tech IPRO team is an incredibly agile organization and was thrilled
 
 **Resources**
 
-- [Azure Functions - Process events with serverless code](https://msdn.microsoft.com/en-us/library/s22azw1e.aspx)
-- [Azure Functions Developer Reference](https://azure.microsoft.com/en-us/documentation/articles/functions-reference/)
+- [Azure Functions developers guide](https://azure.microsoft.com/en-us/documentation/articles/functions-reference/)
 - [Azure Storage Table Design Guide: Designing Scalable and Performant Tables](https://azure.microsoft.com/en-us/documentation/articles/storage-table-design-guide/)
 - [Table Service Concepts](https://msdn.microsoft.com/library/dd179463.aspx/)
 - [ClickOnce Security and Deployment](https://msdn.microsoft.com/en-us/library/t71a733d.aspx)
-- [ClickOnce Update Strategy](https://msdn.microsoft.com/en-us/library/s22azw1e.aspx)
-- [Azure Functions Developer Reference](https://azure.microsoft.com/en-us/documentation/articles/functions-reference/)
-- [Publishing a web site from source control](https://azure.microsoft.com/en-us/documentation/articles/app-service-continous-deployment/)
-- [The Azure Runtime Environment](https://github.com/projectkudu/kudu/wiki/Azure-runtime-environment)
-- [Setting Continuous Deployment](https://github.com/projectkudu/kudu/wiki/Continuous-deployment)
+- [Choosing a ClickOnce Update Strategy](https://msdn.microsoft.com/en-us/library/s22azw1e.aspx)
+- [Azure runtime environment](https://github.com/projectkudu/kudu/wiki/Azure-runtime-environment)
+- [Continuous deployment](https://github.com/projectkudu/kudu/wiki/Continuous-deployment)
 - [Scale up an app in Azure](https://azure.microsoft.com/en-us/documentation/articles/web-sites-scale/) 
-- [Set up staging environments for web apps in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/)
+- [Set up staging environments in Azure App Service](https://azure.microsoft.com/en-us/documentation/articles/web-sites-staged-publishing/)
 	
