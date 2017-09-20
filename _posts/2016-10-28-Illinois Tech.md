@@ -72,7 +72,7 @@ We used the auto-scale capability of Azure Functions to ensure Azure Functions c
 
 *Illinois Tech Taking Names demo video*
 
-[![Illinois Tech taking names Demo Video](http://img.youtube.com/vi/f9MUBwbG1OA/0.jpg)](http://www.youtube.com/watch?v=f9MUBwbG1OA)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f9MUBwbG1OA" frameborder="0" allowfullscreen></iframe>
 
 <br/>
 
