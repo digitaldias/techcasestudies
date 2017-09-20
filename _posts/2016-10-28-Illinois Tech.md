@@ -56,7 +56,7 @@ The current-state value stream map shows that the current manual process is fair
 
 The future state in the value stream mapping shows that lead time stayed about the same (about 5 minutes), but that the time to check in each student could be lowered to around 5 seconds per student, which was an 83 percent improvement. Our solution was to implement a Windows application that scans student RFID cards to take attendance and stores this attendance information in a .csv file for easy use by faculty and also in the cloud for a planned future attendance reporting solution.  
 
-![Future state]({{ site.baseurl }}/images//IllinoisTech/FutureState.png)
+![Future state]({{ site.baseurl }}/images/IllinoisTech/FutureState.png)
 
 <br/>
 
