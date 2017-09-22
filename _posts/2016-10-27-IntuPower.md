@@ -17,7 +17,7 @@ geolocation: [North America]
 
 Microsoft teamed up with [Intupower](http://www.intupower.com) to build an Azure App Service API that is integrated with Office 365 services and Microsoft Graph API. The API will be the backbone for the PhoneGap mobile app.
 
-Core team:
+**Core team:**
 
 * [Mo Hasan](http://www.mzhasan.com/) – Senior Managing Partner, Intupower
 * [Misty Bright](http://www.mistybright.com/) – Managing Partner, Intupower
@@ -50,13 +50,19 @@ then how to set up the app permissions to allow the API to access Office 365 ser
 
 The following screenshots show how to configure app registration against Azure AD.
 
+<br/>
+
 *Office 365 app registration in Azure Active Directory*
 
 ![App Registration Process in AAD]({{ site.baseurl }}/images/IntuPower/AAD-AppReg1.PNG "App Registration Process in AAD")
 
+<br/>
+
 *App permissions in Azure Active Directory*
 
 ![App Registration Permissions in AAD]({{ site.baseurl }}/images/IntuPower/AAD-AppReg2.PNG "App Registration Permissions")
+
+<br/>
 
 After registering the app, we started to implement authentication and authorization against the Microsoft logon page and we created a helper class to simplify integration with Microsoft Graph.
 
@@ -66,6 +72,8 @@ The following code shows how to authorize a user and cache the user's email alon
 
 ![Authorization in Microsoft Graph API]({{ site.baseurl }}/images/IntuPower/Code_Authorize.PNG "Authorization in Microsoft Graph API")
 
+<br/>
+
 Then we started the API implementation to query certain services in Office 365 such as Exchange and SharePoint Online. 
 
 We implemented an integration with Exchange Online; therefore, we were able to send emails to Office 365 users through the API. The following code shows how we implemented sending emails using Microsoft Graph.
@@ -74,9 +82,13 @@ We implemented an integration with Exchange Online; therefore, we were able to s
 
 ![Sending an Email to a user]({{ site.baseurl }}/images/IntuPower/Code_SendMessage.PNG "Sending an email to a user")
 
+<br/>
+
 *An email message from the API using Microsoft Graph*
 
 ![An email message that has been sent by the API]({{ site.baseurl }}/images/IntuPower/Emails.PNG "An email message that has been sent by the API")
+
+<br/>
 
 Then we continued our integration with SharePoint Online by implementing a capability to query sites and site lists in the API. The following code shows how we implemented this using Microsoft Graph API.
 
@@ -84,10 +96,13 @@ Then we continued our integration with SharePoint Online by implementing a capab
 
 ![Query SharePoint Online Sites]({{ site.baseurl }}/images/IntuPower/Code_SPSites.PNG "Query SharePoint Online Sites")
 
+<br/>
+
 *Query SharePoint Online site lists using Microsoft Graph API*
 
-
 ![Query SharePoint Online Lists]({{ site.baseurl }}/images/IntuPower/SiteListsDetailsInJSON.PNG "SharePoint Lists Info in JSON")
+
+<br/>
 
 Since the API caches the user email as a key for the user's access token in the API, the mobile app needs to send a user's email to every call to the API. On every API call, the API verifies whether a user is authenticated or not before executing to the intended method.
 
@@ -95,9 +110,13 @@ If a user is not authenticated, the user will be directed to the Microsoft logon
 
 Once the user is authenticated, the API returns method execution status along with the user's email that would be used for any subsequent calls to the API.
 
+<br/>
+
 *The API response to send an email through Microsoft Graph*
 
 ![The API response to send an email through Microsoft Graph]({{ site.baseurl }}/images/IntuPower/MessageSent_O365-Highlighted.PNG "The API response to send an email through Microsoft Graph")
+
+<br/>
 
 The following is a depiction of the solution architecture.
 
@@ -105,9 +124,13 @@ The following is a depiction of the solution architecture.
 
 ![Solution Architecture]({{ site.baseurl }}/images/IntuPower/Architecture.PNG "Solution Architecture")
 
+<br/>
+
 *This video demonstrates Office 365 Web API deployed to Azure App Service*
 
 [![Project Demo video]({{ site.baseurl }}/images/IntuPower/Video1.PNG)](https://www.youtube.com/watch?v=2wv0xNNz3pI "IntuPower Demo")
+
+<br/>
 
 We have chosen to host the Intupower API in an Azure App Service that allows Intupower to scale up as needed. In addition,
 the Azure App Service allows Intupower developers to deliver updates faster to their customers through continous integration features in Azure App Service. 
