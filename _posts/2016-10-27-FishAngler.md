@@ -2,7 +2,7 @@
 layout: post
 title: "How FishAngler extended their mobile application using Azure Functions"
 author: "Joe Raio"
-author-link: "#"
+author-link: "https://twitter.com/joescars"
 #author-image: "{{ site.baseurl }}/images/authors/photo.jpg"
 date: 2016-11-28
 categories: [Azure App Service, Azure Functions]
@@ -23,10 +23,12 @@ FishAngler allows anglers to connect and benefit from community data gathered th
 
 The project team included the following:
 
-- Jonas Stawski [(@jstawski)](https://twitter.com/jstawski) – CTO, FishAngler
-- Joe Raio [(@joescars)](https://twitter.com/joescars) – Senior Technical Evangelist, Microsoft
+- [Jonas Stawski](https://twitter.com/jstawski) – CTO, FishAngler
+- [Joe Raio](https://twitter.com/joescars) – Senior Technical Evangelist, Microsoft
 - Anastasia Zolochevska – SDE, Microsoft
 - Zain Rizvi – Software Engineer, Microsoft
+
+<br/>
 
 *FishAngler and Microsoft at the hackfest* 
 
@@ -37,7 +39,7 @@ The project team included the following:
 
 Because FishAngler was already powered by Microsoft Azure, they came to us with two very specific requests.
 
-*Note: The term "**Catch**" used from here forward refers to the user posting a fish that they caught using the app. The post contains pictures and metadata including location, fish type, media, and more.* 
+**Note:** The term *catch* used from here forward refers to the user posting a fish that they caught using the app. The post contains pictures and metadata including location, fish type, media, and more. 
 
 **Item 1: Replace existing worker roles with Azure Functions**
 
@@ -72,10 +74,13 @@ The following process was put into place using Azure Functions and Cognitive Ser
 4. **ImageFaceFinder** function monitors the container in blob storage where the photos are uploaded. As new photos are added, the image is sent to Cognitive Services Face API and an object is returned with the location of all faces in the picture. 
 5. **ImageFacesAttachMeta** function receives an HTTP POST from the previous function with the source CatchId and a JSON object containing all of the face data. It then takes this data and attaches it to the original document inside of DocumentDB.
 
+<br/>
+
 *Figure 1. Azure Portal showing functions*
 
 ![Figure 1: Azure Portal Showing Functions]({{ site.baseurl }}/images/fishangler/portal-screen.jpg)
 
+<br/>
 
 *Figure 2. ImageFacesAttachMeta function output*
 
@@ -102,10 +107,13 @@ All code can be found here: [https://github.com/FishAngler/AzureFunctions](https
 
 In addition, we used an [Azure Functions npm package](https://www.npmjs.com/package/generator-azurefunctions) to create the initial templates locally.
 
+<br/>
+
 *Figure 5. Azure Functions template generator*
 
 ![Figure 5: Azure Functions Template Generator]({{ site.baseurl }}/images/fishangler/yo-generator.jpg)
 
+<br/>
 
 *Figure 6. All Azure Functions in Visual Studio code*
 
@@ -118,13 +126,13 @@ FishAngler is planning to replace specific worker roles with Azure Functions whe
 
 ## Conclusion ##
 
->I think the hackfest was a success. I had a lot of fun, learned about Functions, and met very interesting and knowledgeable people. We will check out the new features as they become available. We look forward to working with you again in the near future.
-
->Jonas Stawski – CTO, FishAngler
+>"I think the hackfest was a success. I had a lot of fun, learned about Functions, and met very interesting and knowledgeable people. We will check out the new features as they become available. We look forward to working with you again in the near future."
+>
+>— Jonas Stawski, CTO, FishAngler
 
 Microsoft and FishAngler worked together to come up with a solution that leverages Azure Functions and adds flexibility to their application. The hackfest was a valuable use of time for all involved and allowed us to rapidly prototype ideas and come up with many more.  
 
-## Resources ##
+## Additional resources ##
 
 - [FishAngler project code](https://github.com/FishAngler/AzureFunctions)
 - [Azure Functions generator npm package](https://www.npmjs.com/package/generator-azurefunctions)
