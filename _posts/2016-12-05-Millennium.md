@@ -108,13 +108,17 @@ At coding sessions after the hackfest, we solved these issues:
 
 ![First coding session]({{ site.baseurl }}/images/Millennium/3FirstCoding.jpg)
 
+<br/>
 
 At the end, the Millennium developers prepared the first Resource Manager branch in a provisioning system application. The Microsoft team provided basic helper methods at coding sessions. This project was used as a quick start for the upgrade of the provisioning system application. The source code is published on GitHub ([https://github.com/mirkub2/SetRBAConARMmodel](https://github.com/mirkub2/SetRBAConARMmodel)) with a detailed explanation for the whole developer community on the DX Czech/Slovak blog ([Ako v kóde nastavovať práva na zdroje Azure vyvojárom a ITčkárom](https://blogs.msdn.microsoft.com/vyvojari/2016/10/26/ako-v-kode-nastavovat-prava-na-zdroje-azure-vyvojarom-a-itckarom/)).
+
+<br/>
 
 *Figure 5. Test after RBAC code first run*
 
 ![Test after RBAC code first run]({{ site.baseurl }}/images/Millennium/4TestafterRBAC.png)
 
+<br/>
 
 **Containerization based on Windows containers – pilot**
 
@@ -147,6 +151,8 @@ At coding sessions after the hackfest, we solved this:
   A comprehensive blogpost was published on the DX Czech/Slovak blog ([Ako nasadiť ASP.NET Framework aplikácie do Windows kontajnerov v Azure pomocou VSTS – krok za krokom](https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/)).
 - The ISV partner team succesfully tested this basic scenario in a team of two developers.
 
+<br/>
+
 *Figure 6. Schema of web application lifecycle with deployment to Windows Container*
 
 ![Deployment outputs]({{ site.baseurl }}/images/Millennium/5Schema.png)
@@ -156,24 +162,22 @@ At coding sessions after the hackfest, we solved this:
 
 Our DevOps hackfest consisted of three major phases:
 
-- Business and technical onboarding that includes:
+1. Business and technical onboarding that includes:
   - Legal work such as nondisclosure agreements.
   - Four hours to onboard to Resource Manager/RBAC and Windows Containers, including brainstorming how to smartly extend an existing solution with a newer Azure deployment model with Role-Based Access. Part of this first hackfest session was team creation – three DX technical evangelists focused on Azure and DevOps (Microsoft), tech leader for application development (Millennium), three application developers (Millennium).
   - At least a three-day break to think about the solution individually and check actual technical resources for Resource Manager/RBAC and Windows Containers.
-- Development/process evaluation, which consists of:
+2. Development/process evaluation, which consists of:
   - Analyzing the existing provisioning system based on an ASM model.
   - Five two-hour coding sessions in the next five weeks focused on code development (Resource Manager/RBAC part) and steps evaluation (Windows container part).
   - Regular email/Skype contact to check on the status of the project.
   - Four full days (one full day = eight hours) to prepare tutorials, which rapidly moved the project forward, including publishing for the broader community.
-- Output and handoff, which includes:
+3. Output and handoff, which includes:
   - GitHub ([https://github.com/mirkub2/SetRBAConARMmodel](https://github.com/mirkub2/SetRBAConARMmodel)).  
   
   - Related technical articles published on a local blog: 
   
     - [https://blogs.msdn.microsoft.com/vyvojari/2016/10/26/ako-v-kode-nastavovat-prava-na-zdroje-azure-vyvojarom-a-itckarom/](https://blogs.msdn.microsoft.com/vyvojari/2016/10/26/ako-v-kode-nastavovat-prava-na-zdroje-azure-vyvojarom-a-itckarom/)
-    
     - [https://blogs.msdn.microsoft.com/vyvojari/2016/11/15/ako-kontajnerizovat-asp-net-framework-aplikacie-v-azure-krok-za-krokom/](https://blogs.msdn.microsoft.com/vyvojari/2016/11/15/ako-kontajnerizovat-asp-net-framework-aplikacie-v-azure-krok-za-krokom/)
-    
     - [https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/](https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/)
     
   - Piloting RBAC in first team/project.
