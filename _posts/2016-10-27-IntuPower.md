@@ -2,7 +2,7 @@
 layout: post
 title: "Building a PhoneGap API with Intupower"
 author: "Mostafa Elzoghbi"
-author-link: "#"
+author-link: "http://www.twitter.com/mostafaelzoghbi"
 #author-image: "{{ site.baseurl }}/images/authors/photo.jpg"
 date: 2016-11-28
 categories: [Azure App Service]
