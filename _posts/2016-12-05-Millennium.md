@@ -31,7 +31,7 @@ In this DevOps hackfest, Microsoft worked with Millennium to integrate an Azure 
 
 ## Customer profile ##
 
-[Millennium, spol. s r.o.](http://millennium.cz/en/homepage) is a Slovak-based company that has been delivering and administering client portal and CRM solutions for 15 years. The company strategically focuses on Microsoft technologies, especially on development of CRM-based solutions, information portal solutions, and web and mobile custom solutions. Internally, they set up rules for all activities, which not only met customers’ expectations, but also created value for the client’s investment in Microsoft technologies.
+[Millennium, spol. s r.o.](https://www.millennium-itsolutions.com/) is a Slovak-based company that has been delivering and administering client portal and CRM solutions for 15 years. The company strategically focuses on Microsoft technologies, especially on development of CRM-based solutions, information portal solutions, and web and mobile custom solutions. Internally, they set up rules for all activities, which not only met customers’ expectations, but also created value for the client’s investment in Microsoft technologies.
 
 In addition to the Slovak market, Millennium also operates in the Czech market and the United States. The company has three divisions: sales, finance and marketing, and IT (30 solution developers and IT professionals). Every software project (external or internal) has a project manager and technical leader. The same pool of developers is used for external and internal projects. This ISV partner has been meeting qualification criteria to be a certified partner of Microsoft since 2003, and all development team members have Microsoft Certified Professional (MCP) certificates. 
 
@@ -50,11 +50,13 @@ To prepare for the DevOps hackfest, we needed to ensure that the whole team woul
 
 ![Onboarding]({{ site.baseurl }}/images/Millennium/1Onboarding.jpg)
 
+<br/>
 
 *Figure 2. Brainstorming*
 
 ![Brainstorming]({{ site.baseurl }}/images/Millennium/2Brainstorming.jpg)
 
+<br/>
 
 The actual provisioning system based on the ASM model doesn’t allow for starting services supported only for Resource Manager. ASM provisioning is described with a set of API calls without flexibility to change provisioning schema in a short time. Resource Manager provisioning can be templated. ASM access control to the Azure environment is based on co-administrator access for every developer who is a member of a team project. Role-Based Access Control in the Resource Manager model is much closer to the reality of secure access rules assigned to developers working on projects. 
 
@@ -66,6 +68,7 @@ Part of the brainstorming was about the actual process flow (through value strea
 
 ![Value stream mapping]({{ site.baseurl }}/images/Millennium/ValueStreamMapping.png)
 
+<br/>
 
 Brainstorming discussions concluded that if we “upgrade” existing development and provisioning cycles with the DevOps practices Infrastructure as Code (including RBAC for developers), continuous integration and continuous deployment, we will benefit from shorter time between user acceptance testing (UAT) system provisioning, code development, and UAT testing. According to our estimation based on value stream mapping, all new application cycles in the actual provisioning system take four days. We saw that the usage of Resource Manager templates and RBAC will solve the main delays in the first provisioning of applications' UAT environments. This implementation (described below) will help us to use Infrastructure as Code and continuous integration. If the Resource Manager/RBAC process will work, we can turn on continuous deployment to the Azure host (or container) in team projects covered by Visual Studio Team Services. 
 
@@ -88,6 +91,8 @@ Existing dev and test provisioning application is focused on start/stop manageme
 - Using “images” feature in old portal for templating, which is not fully implemented in custom provisioning application.
 - Developers/administrators who need access to Azure portal are promoted as co-administrators.
 
+<br/>
+
 Steps on how to “upgrade” the existing provisioning system in the first phase:
 
 - Create in the existing application a new Resource Manager menu branch, which will offer “Create RG from template,” “List VMs with status,” “Start VM,” “Stop VM,” and “Assign user to RG.”   
@@ -95,6 +100,8 @@ Steps on how to “upgrade” the existing provisioning system in the first phas
 - Prepare Azure Storage for existing VHDs with complex settings (for example, Sharepoint virtual machines).
 - Because project members can be external, for this first Resource Manager RBAC upgrade we checked the Azure subscription tenant Azure Active Directory to see whether all developers were there. Azure AD syncing from Active Directory Domain Services will be activated in the next provisioning system update.  
 - Implement code for event handling of all new menus.
+
+<br/>
 
 At coding sessions after the hackfest, we solved these issues:
 
@@ -131,6 +138,8 @@ We solved these problems:
 - Tutorials explaining deployment of .NET Framework web applications to containers using Visual Studio were out of our pilot scope. The tutorials were focused on .NET Core application deployments or missing application lifecycle management parts. The Microsoft team prepared a new tutorial published on the DX Czech/Slovak blog ([Ako nasadiť ASP.NET Framework aplikácie do Windows kontajnerov v Azure pomocou VSTS – krok za krokom](https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/)).
 - Only Windows Server Core image is usable for .NET Framework containerization. The deployment process based on “build application -> create Docker image with application -> provision Docker container -> deploy application to container” is not usable with continuous deployment/integration. It was time consuming and complicated in the containers networking part.
 
+<br/>
+
 We agreed on these steps for the containerization pilot:
 
 - Create an Azure virtual machine as a containerization host (according to the step-by-step tutorial from the Microsoft team).
@@ -140,6 +149,8 @@ We agreed on these steps for the containerization pilot:
 - Add at least two developers to the project who will develop a sample application (“check-in” to VSTS).
 - Connect the VSTS project to the Azure container host. This part will be based on a tutorial prepared by the Microsoft team.   
 - Test and debug all processes by the Millennium developer team.
+
+<br/>
 
 At coding sessions after the hackfest, we solved this:
 
@@ -179,7 +190,9 @@ Our DevOps hackfest consisted of three major phases:
       - [https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/](https://blogs.msdn.microsoft.com/vyvojari/2016/11/29/ako-nasadit-asp-net-framework-aplikacie-do-windows-kontajnerov-v-azure-pomocou-vsts-krok-za-krokom/)
     
     - Piloting RBAC in first team/project.
-  
+
+<br/>
+
 Next steps: 
 
 - Microsoft will provide a consultancy during the next phase, programmatically provisioning Azure platform services in a Resource Manager model. 
