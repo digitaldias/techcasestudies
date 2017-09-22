@@ -2,7 +2,7 @@
 layout: post
 title: "Building a Xamarin app with Urban Refuge"
 author: "James Sturtevant"
-author-link: "#"
+author-link: "https://twitter.com/aspenwilder"
 #author-image: "{{ site.baseurl }}/images/authors/photo.jpg"
 date: 2016-12-12
 categories: [Mobile Application Development with Xamarin, Mobile DevOps, Azure App Service]
@@ -24,8 +24,10 @@ Core team:
 
 - Kate Skow – Director of Technology & Design, Urban Refuge
 - Victoria Kelberer-McKee – Co-founder and CEO, Urban Refuge
-- James Sturtevant ([@aspenwilder](https://twitter.com/aspenwilder)) – Senior Technical Evangelist, Microsoft
-- Gavin Bauman ([@gavination2](https://twitter.com/gavination2)) – Technical Evangelist, Microsoft
+- [James Sturtevant](https://twitter.com/aspenwilder) – Senior Technical Evangelist, Microsoft
+- [Gavin Bauman](https://twitter.com/gavination2) – Technical Evangelist, Microsoft
+
+<br/>
 
 ![code2]({{ site.baseurl }}/images/urbanrefuge/Code2.PNG)
 
@@ -38,7 +40,9 @@ The mobile application is a Xamarin Forms cross-platform mobile application for 
 
 Using the DevOps practice of Automated Deployment, the Urban Refuge team uses Visual Studio Team Services (VSTS) to deploy to their beta testers on demand via the HockeyApp integration. The testers can then submit bug reports directly back to the Urban Refuge team, shortening the feedback cycle.
 
-> "The way that Urban Refuge has been built allows the app to be extremely flexible and applicable in contexts globally. While the specific platform for the launch will be tailored to Amman, focusing on Syrian users, the use of Xamarin and intuitive platforms will make it relatively easy to translate this app to new markets." - Kate Skow, Urban Refuge
+> "The way that Urban Refuge has been built allows the app to be extremely flexible and applicable in contexts globally. While the specific platform for the launch will be tailored to Amman, focusing on Syrian users, the use of Xamarin and intuitive platforms will make it relatively easy to translate this app to new markets."
+>
+>— Kate Skow, Urban Refuge
 
 ## Customer profile ##
 
@@ -53,6 +57,7 @@ The Urban Refuge application will be piloted in Amman, Jordan, with the aim of s
 
 ![Ruin]({{ site.baseurl }}/images/urbanrefuge/Ruin.PNG)
 
+<br/>
 
 Urban refugees make up 78% of the 655,000 registered Syrian refugees in Jordan. Although evidence from the field suggests the majority of urban Syrian refugees have access to mobile phones in Jordan, the way refugees currently discover assistance opportunities is largely through word of mouth due to a dearth of accessible online resources and social stigma. During their research, the team at Urban Refuge found that putting the aid on the map in the form of a mobile application enables urban refugees to gain access to vital aid, without the stigma that comes with being a refugee in Jordan. Currently, the Urban Refuge team has a database of more than 160 organizations tagged by geo-coordinates to help refugees find aid.
 
@@ -75,8 +80,11 @@ The solution has several components to it. The most important components are:
 5. [Usage metrics via HockeyApp Integration](#5-usage-metrics-via-hockeyapp-integration)
 6. [Automated Deployment via VSTS and HockeyApp](#6-automated-deployment-via-vsts-and-hockeyapp)
 
+<br/>
+
 ![working]({{ site.baseurl }}/images/urbanrefuge/Working.PNG)
 
+<br/>
 
 A high-level view of the architecture is as follows:
 
@@ -87,6 +95,8 @@ A high-level view of the architecture is as follows:
 The first step to the solution was to create a Xamarin Forms application for Android and iOS. The Urban Refuge team designed the UX of the application to be simple and straightforward with very little wording. By using minimal words, the design becomes more inclusive for all users despite their level of literacy. An added benefit of using iconography is raising the accessibility level for people who are color blind. You can learn more about inclusive design at [Microsoft Design](https://www.microsoft.com/en-us/design/inclusive). 
 
 ![app filter page - inclusive design]({{ site.baseurl }}/images/urbanrefuge/ur-inclusivedesign.png)
+
+<br/>
 
 To lay out the buttons, create a [responsive grid](https://developer.xamarin.com/guides/xamarin-forms/user-interface/layouts/grid/) in Xamarin Forms XAML. By specifying the image size and using the ```*``` operator on the end row and columns, the grid becomes centered on all screens.  The ```*``` operator fills the remaining space on the screen after allocating space for the other rows/columns.
 
@@ -110,6 +120,8 @@ To lay out the buttons, create a [responsive grid](https://developer.xamarin.com
 </Grid>
 ```
 
+<br/>
+
 Xamarin Forms allows you to customize the user interface beyond the built-in controls using [Custom Renderers](https://developer.xamarin.com/guides/xamarin-forms/custom-renderer/). There is also a custom component store that lets you use community-created controls quickly. In this case, the 
 [Circle Image Control Plugin for Xamarin.Forms](https://github.com/jamesmontemagno/ImageCirclePlugin) was used, which leverages Custom Renderers to create the circular buttons:
 
@@ -128,6 +140,8 @@ Xamarin Forms allows you to customize the user interface beyond the built-in con
     </ic:CircleImage>
 </ContentView>
 ```
+
+<br/>
 
 The team could then add images (including high-res images) to each platform-specific project, and Xamarin Forms manages finding the appropriate image to display for each platform.
 
@@ -161,13 +175,20 @@ Azure B2C is being used to authenticate calls from the Xamarin Application to th
 
 ![application access]({{ site.baseurl }}/images/urbanrefuge/application-access.png)
 
+<br/>
 
 There are two parts to the setup for the project:
 
 1. [Xamarin Configuration](#xamarin-configuration)
 2. [ASP.NET Core Configuration](#aspnet-core-configuration)
 
-> What I love about this project is that you made sure that the security was there, which was extremely important from a political and ethical standpoint to protect these communities. - Professor Noora Lori, Boston University
+<br/>
+
+>"What I love about this project is that you made sure that the security was there, which was extremely important from a political and ethical standpoint to protect these communities."
+>
+>— Professor Noora Lori, Boston University
+
+<br/>
 
 #### Xamarin Configuration
 
@@ -198,6 +219,8 @@ private static bool IsLoggedIn(string token)
     return !string.IsNullOrWhiteSpace(token);
 }
 ```
+
+<br/>
 
 If the user is not logged on to the application, clicking the logon button initiates the authentication flow with the following code:
 
@@ -235,6 +258,8 @@ catch (Exception ex)
 }
 ```
 
+<br/>
+
 The library manages the OAuth logon flow through different screens for obtaining an access token to use when calling the API. However, on iOS and Android it requires additional platform-specific code to finished the configuration. A custom renderer for each of the platforms allows for hooking into the rendering pipeline to pass the ```PlatFormParameters``` to the Azure B2C library being used in the Xamarin Forms project.
 
 On iOS, the custom renderer looks like:
@@ -261,6 +286,8 @@ namespace UrbanRefuge.XForms.iOS
     }
 }
 ```
+
+<br/>
 
 On Android, the custom renderer looks like:
 
@@ -290,7 +317,9 @@ namespace UrbanRefuge.XForms.Droid
 }
 ```
 
-#### ASP.NET Core Configuration
+<br/>
+
+#### ASP.NET Core configuration
 
 The ASP.NET Core application is using two types of authentication. The first is using token authentication to authenticate the requests coming from the Xamarin Application. This completes the configuration for the Xamarin application in the previous section. To enable token authentication, you need to configure it in the ```Configure``` method in the ```Startup.cs```:
 
@@ -316,6 +345,8 @@ app.UseJwtBearerAuthentication(new JwtBearerOptions
 });
 ```
 
+<br/>
+
 To enforce the authorization on the API, add the ```Authorize``` attribute to the API controller.
 
 ```csharp
@@ -329,6 +360,8 @@ namespace UrbanRefuge.Web.Controllers
     }
 }
 ```
+
+<br/>
 
 You will notice that the value of ```Bearer``` was passed for ```ActiveAuthenticationSchemes``` in the authorization attribute. In ASP.NET Core it is possible to pass the ```ActiveAuthenticationSchemes``` type, which allows for the configuration of the token authentication configuration for the API and the cookie authentication for the Management portal. This allows for a second authentication mechanism that secures the Management portal and, in the case above, enables the API for bearer only. If there is no bearer token, then the request will be unauthenticated.
 
@@ -345,11 +378,15 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions()
 app.UseOpenIdConnectAuthentication(CreateOptionsFromPolicy(SignInPolicyId));
 ```
 
+<br/>
+
 And add the following to the ```ConfigureServices``` method:
 
 ```csharp
 services.AddAuthentication(sharedOptions => sharedOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
 ```
+
+<br/>
 
 An account controller must be added so the user can click the sign-in button to initiate the logon flow:
 
@@ -395,6 +432,8 @@ namespace UrbanRefuge.Web.Controllers
 }
 ```
 
+<br/>
+
 Finally, on the Portal Controller add the ```Authorize``` attribute with the ```ActiveAuthenticationSchemes``` property set to the value ```Cookies```:
 
 ```csharp
@@ -418,6 +457,8 @@ namespace UrbanRefuge.Web.Controllers
 }
 ```
 
+<br/>
+
 The API is now configured to use both bearer token and cookie authentication. When a request is made to the API, the ASP.NET Core Middleware will check for the existence of the bearer token. When a request is made to the MVC portal, the ASP.NET Core Middleware will check for the existence of a cookie.  
 
 ### 4. Localization of resources 
@@ -428,6 +469,7 @@ The localization code required both Xamarin Forms PCL code and platform-specific
 
 ![language specific resource files]({{ site.baseurl }}/images/urbanrefuge/ur-forms-resource-files.png)
 
+<br/>
 
 For the localization to work, we require platform-specific code that needs to be called from Xamarin Forms PCL project to get the cultural information. We used Xamarin's [Dependency Service](https://developer.xamarin.com/guides/xamarin-forms/dependency-service/) to enable the calls from the PCL to the specific platforms.  
 
@@ -439,6 +481,8 @@ public interface ILocalize
     CultureInfo GetCurrentCultureInfo();
 }
 ```
+
+<br/>
 
 The next step is to write the platform-specific code for both iOS and Android. All of the code and related details on localization can be found in [Xamarin's Localization documentation](https://developer.xamarin.com/guides/xamarin-forms/advanced/localization/), including customizing the app name for each platform. 
 
@@ -500,6 +544,8 @@ private async Task ExecuteFilterCommand(string resourceType)
 }
 ```
 
+<br/>
+
 HockeyApp metrics view:
 
 ![language specific resource files]({{ site.baseurl }}/images/urbanrefuge/ur-hockeyapp-metrics.png)
@@ -513,6 +559,7 @@ In VSTS the project was set up to build the Xamarin application following the tu
 
 ![build definition in vsts]({{ site.baseurl }}/images/urbanrefuge/ur-vsts-builddef.png)
 
+<br/>
 
 By choosing to implement Automated Deployment, the development team located in Boston can make a bug fix and quickly deploy the fix for the testers in Amman, Jordan, in a reliable and automated fashion. As the team grows they will be in good position to look at adopting other practices such as Continuous Deployment.
 
@@ -540,7 +587,9 @@ As the Urban Refuge story has gained momentum, there has been a surge in request
 
 The integration with [HockeyApp User Metrics](https://www.hockeyapp.net/features/user-metrics/) will not only help the team understand which components of the application are being used the most, but also has an impact on research that originally sparked the creation of Urban Refuge. 
 
-> One of the most exciting things about working on this has been realizing that the way you design the tool has a huge impact on what I can do in the classroom with my students and what I can do as a social scientist researching forced migration and human trafficking. - Professor Noora Lori, Boston University
+> "One of the most exciting things about working on this has been realizing that the way you design the tool has a huge impact on what I can do in the classroom with my students and what I can do as a social scientist researching forced migration and human trafficking."
+>
+>— Professor Noora Lori, Boston University
 
 ## General lessons ##
 
