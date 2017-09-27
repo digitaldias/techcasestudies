@@ -96,19 +96,23 @@ To run our tests, we needed Karma. The main goal for Karma is to bring a product
 Karma has this concept of *launcher*, a platform on which the tests will be run. Because we are writing front-end code, it means this code will be run in a browser such as Chrome, Internet Explorer, or Firefox. In our case, we decided to use PhantomJS because we wanted to run our tests in an in-memory browser—this will help us later in Visual Studio Team Services.
 
 The first thing to do is install the correct dependencies in our project using NPM. We installed the following: 
-* jasmine-core              : Official Jasmine package
-* karma                     : Official Karma package
-* karma-jasmine             : Karma Adapter for the Jasmine testing framework
-* karma-phantomjs-launcher  : Karma Launcher for PhantomJS
+
+* jasmine-core: Official Jasmine package
+* karma: Official Karma package
+* karma-jasmine: Karma adapter for the Jasmine testing framework
+* karma-phantomjs-launcher: Karma launcher for PhantomJS
 
 We installed it using ```npm install jasmine-core karma karma-jasmine karma-phantomjs-launcher --save-dev```.
 
 **Note:** Karma could be installed globally if you prefer.
 
+<br/>
+
 As an option, we also decided to use these plug-ins in Karma:
-* karma-coverage            : Karma plug-in to generate code coverage
-* karma-junit-reporter      : Karma plug-in to generate report compatible with Team Services
-* karma-chrome-launcher     : Karma launcher for Google Chrome, Google Chrome Canary, and Google Chromium
+
+* karma-coverage: Karma plug-in to generate code coverage
+* karma-junit-reporter: Karma plug-in to generate report compatible with Team Services
+* karma-chrome-launcher: Karma launcher for Google Chrome, Google Chrome Canary, and Google Chromium
 
 When we finished the installation, we set up Karma with the command ```karma init```.
 
@@ -213,6 +217,8 @@ module.exports = function (config) {
 }
 {% endhighlight %}
 
+<br/>
+
 Now we can launch Karma and run our tests using the ```karma start``` command. 
 
 The next step is to write our code using Jasmine. We decided to create a folder named ```tests``` in the solution and create our first file named ```TrendFormController.spec.js```.
@@ -228,6 +234,8 @@ describe('Addition two tags', function () {
     });
 });
 {% endhighlight %}
+
+<br/>
 
 As mentioned before, we will need to "mock" some data and prepare our controller to be tested using the method ```beforeEach``` with Jasmine.
 
@@ -287,6 +295,8 @@ describe("TrendFormController Tests", function () {
 });
 {% endhighlight %}
 
+<br/>
+
 Now that we have three tests, we can run Karma locally and see how it goes with ```karma start```.
 
 ```
@@ -300,6 +310,8 @@ PhantomJS 2.1.1 (Windows 8 0.0.0): Executed 0 of 3 SUCCESS (0 secs / 0 secs)
 [2KPhantomJS 2.1.1 (Windows 8 0.0.0): Executed 3 of 3 SUCCESS (0 secs / 0.397 secs)
 [2KPhantomJS 2.1.1 (Windows 8 0.0.0): Executed 3 of 3 SUCCESS (0.027 secs / 0.397 secs)
 ```
+
+<br/>
 
 To give more context, here is a code snippet from the TrendsController:
 
@@ -368,6 +380,8 @@ TrendFormController.prototype.addTag = function (node, path) {
 angular.module('Mydea.Controller').controller('TrendFormController', TrendFormController);
 {% endhighlight %}
 
+<br/>
+
 Now that we have our tests implemented for our code, let's automate it and integrate it inside the Team Services build.
 
 Because the Mydea team is already using Gulp, we decided to add a task to execute the tests from it.
@@ -393,32 +407,41 @@ The unit tests also need to cover the back-end component of the application that
     - Validating that the instantiation of a ```Trend``` class has the expected number of fields.
     - Verifying that we can create a list. 
     - Verifying that we can delete a list.
-
+    
+    <br/>
+    
 2. **Applying the AAA pattern.** When you write tests, a good practice is to organize your code with the AAA pattern. Your code will therefore be arranged in the following three sections: 
     - **Arrange:** Initialize the objects or set the values that will be needed to run the test.
     - **Act:** Run the test with the arranged parameters.
     - **Assert:** Verify that the method being tested has produced the expected results.
-
+    
+    <br/>
+    
     **Tip:** Create a code snippet to facilitate the use of the test method consistently following the AAA pattern. For details, see [how to create a code snippet in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/walkthrough-creating-a-code-snippet).
 
     It also is a good practice to name your test methods with the following pattern:
-    
+       
     ``` "WorkToBeDone_WhatIsTested_ExpectedResult"  ```
-
+    
+    <br/>
+    
 3. **Implementation.** We added to the existing solution a new ```Unit Test Project (.Net Framework)```. This project will be leveraged later in order to integrate the tests into the build process.
     
     *Add Visual Studio test project*
-    
+        
     <img alt="Add VS Test project" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_test_project.png">
+        
+    <br/>
     
-
     In the newly created ```unit test project```, we've added a class called ```TrendTests```. In this class we will create a method for each of the unit tests that we have defined earlier. 
 
     **Note:** The Microsoft unit testing framework requires the following attributes: 
     
     - ```[TestClass]``` for any class that contains test methods
     - ```[TestMethod]``` for every method that will be run by the Test Explorer
-
+    
+    <br/>
+    
     While we were building those methods, we realized we needed some shared logic in the class to perform the authentication against SharePoint Online.
     
     We decided to add this logic in three additional methods that do not have any attributes so that the unit testing framework does not run them directly. We created the following methods: 
@@ -460,12 +483,13 @@ The unit tests also need to cover the back-end component of the application that
         return new SharePointUser(user);
     }
 {% endhighlight %}
-
-    
-Let's look in detail at each one of the test methods for the back end of the application: 
-
-- Validating the instantiation of the ```Trend``` class.
   
+  <br/>
+    
+  Let's look in detail at each one of the test methods for the back end of the application: 
+    
+    - Validating the instantiation of the ```Trend``` class.
+    
   The class has been created to enable trends in the application. A trend is represented by a SharePoint list with three fields. Our first unit test will verify that the constructor has the expected three fields.
 
     {% highlight csharp %}  
@@ -482,10 +506,12 @@ Let's look in detail at each one of the test methods for the back end of the app
         }
     
     {% endhighlight %}
-
-- Verifying that the list can be created in SharePoint Online.
     
-  This will actually test the creation operation and fail if the operation does not succeed.
+    <br/>
+    
+    - Verifying that the list can be created in SharePoint Online.
+    
+    This will actually test the creation operation and fail if the operation does not succeed.
     
     {% highlight csharp %} 
     
@@ -502,11 +528,13 @@ Let's look in detail at each one of the test methods for the back end of the app
         }
     
     {% endhighlight %}
-
-- Deleting the list that was created.
     
-  After running this set of tests, we will need to clean up the environment to be able to test again if necessary. Therefore, this method will be called upon to clean the SharePoint Online environment.
-
+    <br/>
+    
+    - Deleting the list that was created.
+        
+    After running this set of tests, we will need to clean up the environment to be able to test again if necessary. Therefore, this method will be called upon to clean the SharePoint Online environment.
+    
     {% highlight csharp %}
     
         [TestMethod()]
@@ -522,7 +550,9 @@ Let's look in detail at each one of the test methods for the back end of the app
         }
     
     {% endhighlight %}
-
+    
+    <br/>
+    
 4. **Ordering the tests**
     
     In this hackfest, we had to be deterministic with the order of the tests so that the delete method would be called after the list was created and the test of the constructor would be called first.
@@ -553,7 +583,7 @@ To implement the automated testing, we chose [*Selenium*](http://www.seleniumhq.
 
 **Implementation of the tests**
 
-#### 1. Create a new test project and add Selenium packages. ####
+1. **Create a new test project and add Selenium packages.**
 
 To write Selenium-based tests, use the regular unit test framework of your choice. For instance, we created another new ```Unit Test Project (.Net Framework)```. 
     
@@ -572,12 +602,12 @@ Next, install a couple of **NuGet Packages** to the project:
 <br/>
 
 -------------
-| Package Name              | Purpose               
-|---------------------------|------------------------
-| Selenium.WebDriver        | .NET Bindings for Selenium WebDriver
-| Selenium.Support          | Helper Classes
+| Package Name                | Purpose               
+|-----------------------------|------------------------
+| Selenium.WebDriver          | .NET Bindings for Selenium WebDriver
+| Selenium.Support            | Helper Classes
 | Selenium.WebDriver.xxDriver        | Drivers for the different browser (Chrome, Edge, ...)
-| Selenium.PhantomJS.WebDriver        | Driver for the headless PhantomJS browser
+| Selenium.PhantomJS.WebDriver          | Driver for the headless PhantomJS browser
 -------------
 
 **What's the right Selenium driver to use?**
@@ -590,7 +620,7 @@ It's important to note that, since it's a regular browser UI, you will have to r
     
 In case you want to run them in the **VSTS Managed Build Agent**, you will have to use **PhantomJS**, which is a headless browser that can also run without an interactive UI session. So we are using the ``PhantomJSDriver`` below. To learn more about the capabilities and limitations of a hosted agent, see [Hosted agents](https://www.visualstudio.com/en-us/docs/build/concepts/agents/hosted).
 
-#### 2. Create a base class for Selenium tests ####
+2. **Create a base class for Selenium tests**
 
 Next we created a **common base class** for all Selenium tests. In the base class, we initialize the Selenium driver and maximize the window before each test. After each test, we tear down the driver.
 
@@ -624,7 +654,9 @@ Next we created a **common base class** for all Selenium tests. In the base clas
 
 We also create a ``WebDriverWait`` object, which can be used to find objects in the HTML website DOM tree.
 
-#### 3. Create a Selenium test for Azure Active Directory logon ####
+<br/>
+
+3. **Create a Selenium test for Azure Active Directory logon**
 
 Because **Lufthansa's Mydea** is using **Office 365**, users always have to log on first. So our first Selenium test had to automate log on to Office 365 and Azure Active Directory.
 
@@ -660,6 +692,8 @@ Because **Lufthansa's Mydea** is using **Office 365**, users always have to log 
     }
 {% endhighlight %}
 
+<br/>
+
 Using ``Wait.Until``, we pause the test until a certain HTML element becomes available in the browser's page DOM. The element can be selected by ID (``By.Id``), CSS query (``By.CssSelector``), or other options.
 
 Next we send keys into the username and password text boxes using ``SendKeys``. Finally, we submit the logon form using ``Submit``. 
@@ -670,7 +704,9 @@ To verify the logon, we check for the availability of the username in the header
 
 For better visibility, switch to the Chrome driver so you can actually see what goes on in the browser.
 
-#### 4. Reuse logon across multiple tests ####
+<br/>
+
+4. **Reuse logon across multiple tests**
 
 Mydea always needs a logged-on user. As a result, run times of the tests become longer because you always have to log on first.
 
@@ -709,6 +745,8 @@ We created another base class, which encapsulated the *logon* functionality, so 
 
 {% endhighlight %}
 
+<br/>
+
 A final Selenium test of a AuthN protected page would then look like this:
 
 {% highlight csharp %}
@@ -739,15 +777,19 @@ A final Selenium test of a AuthN protected page would then look like this:
 
 {% endhighlight %}
 
+<br/>
+
 **Tip:** Have a look at **Selenium IDE**, which makes writing Selenium tests easier through a click recording functionality. We still found that we had to modify the recorded tests afterward anyways...
 
-#### 5. Using test parameters ####
+5. **Using test parameters**
 
 To make parameters such as username and password configurable, you have to use ``TestContext``.
 
 Add a property to your unit test class (or base class):
 
     public TestContext TestContext { get; set; }
+
+<br/>
 
 The context is automatically filled in during execution of the test.
 
@@ -763,6 +805,8 @@ To feed username and others with values, create a ``xx.runsettings`` file in you
             <Parameter name="password" value="Password" />  
         </TestRunParameters> 
     </RunSettings>
+
+<br/>
 
 You can then select the *runsettings* file to be used locally in Visual Studio.
 
