@@ -425,9 +425,8 @@ When you write tests, a good practice is to organize your code with the AAA patt
 
 It also is a good practice to name your test methods with the following pattern:
        
-``` "WorkToBeDone_WhatIsTested_ExpectedResult"  ```
+``` "WorkToBeDone_WhatIsTested_ExpectedResult" ```
     
-<br/>
     
 #### 3. Implementation 
 
@@ -437,7 +436,6 @@ We added to the existing solution a new ```Unit Test Project (.Net Framework)```
         
 <img alt="Add VS Test project" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_test_project.png">
         
-<br/>
     
 In the newly created ```unit test project```, we've added a class called ```TrendTests```. In this class we will create a method for each of the unit tests that we have defined earlier. 
 
@@ -513,7 +511,6 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-<br/>
     
 - Verifying that the list can be created in SharePoint Online.
     
@@ -535,7 +532,6 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-<br/>
     
 - Deleting the list that was created.
         
@@ -557,7 +553,6 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-<br/>
     
 #### 4. Ordering the tests
     
@@ -569,7 +564,6 @@ If you do not specify any order, the Microsoft unit testing framework will run t
     
 <img alt="Adding an ordered test" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_ordered_test.png">
     
-<br/>
     
 This lists all the test methods of the project and allows you to specify in which order they will run. You may have several ordered tests in the project and you can organize your ordered tests, which allows more granularity in how you manage them.
     
@@ -577,7 +571,6 @@ This lists all the test methods of the project and allows you to specify in whic
     
 <img alt="Organize your tests" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/ordered_test.png">
     
-<br/>
     
 Those tests are now ready to be integrated into the build process of the application.
     
@@ -608,11 +601,11 @@ Next, install a couple of **NuGet Packages** to the project:
 <br/>
 
 | Package Name                               | Purpose               |
-|-----------------------------|-------------------------------------------------|
-| Selenium.WebDriver                  | .NET Bindings for Selenium WebDriver   |
-| Selenium.Support                    | Helper Classes                         |
-| Selenium.WebDriver.xxDriver        | Drivers for the different browser (Chrome, Edge, ...)  |
-| Selenium.PhantomJS.WebDriver          | Driver for the headless PhantomJS browser  |
+|----------------------------------------------|-------------------------------------------------|
+| Selenium.WebDriver                            | .NET Bindings for Selenium WebDriver   |
+| Selenium.Support                               | Helper Classes                         |
+| Selenium.WebDriver.xxDriver                    | Drivers for the different browser (Chrome, Edge, ...)  |
+| Selenium.PhantomJS.WebDriver                       | Driver for the headless PhantomJS browser  |
 
 
 **What's the right Selenium driver to use?**
