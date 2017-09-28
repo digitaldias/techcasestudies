@@ -106,8 +106,6 @@ We installed it using ```npm install jasmine-core karma karma-jasmine karma-phan
 
 **Note:** Karma could be installed globally if you prefer.
 
-<br/>
-
 As an option, we also decided to use these plug-ins in Karma:
 
 * karma-coverage: Karma plug-in to generate code coverage
@@ -403,48 +401,56 @@ gulp.task('tests', function (done) {
 
 The unit tests also need to cover the back-end component of the application that manages the interaction with SharePoint. We organized one of the workstreams to focus on the creation of those tests.
 
-1. **Scoping.** We started by defining the minimum set of tests that are needed to verify that the back end is working properly. It was then decided to implement the following set of tests:
-    - Validating that the instantiation of a ```Trend``` class has the expected number of fields.
-    - Verifying that we can create a list. 
-    - Verifying that we can delete a list.
-    
-    <br/>
-    
-2. **Applying the AAA pattern.** When you write tests, a good practice is to organize your code with the AAA pattern. Your code will therefore be arranged in the following three sections: 
-    - **Arrange:** Initialize the objects or set the values that will be needed to run the test.
-    - **Act:** Run the test with the arranged parameters.
-    - **Assert:** Verify that the method being tested has produced the expected results.
-    
-    <br/>
-    
-    **Tip:** Create a code snippet to facilitate the use of the test method consistently following the AAA pattern. For details, see [how to create a code snippet in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/walkthrough-creating-a-code-snippet).
+#### 1. Scoping
 
-    It also is a good practice to name your test methods with the following pattern:
+We started by defining the minimum set of tests that are needed to verify that the back end is working properly. It was then decided to implement the following set of tests:
+
+- Validating that the instantiation of a ```Trend``` class has the expected number of fields.
+- Verifying that we can create a list. 
+- Verifying that we can delete a list.
+    
+<br/>
+    
+#### 2. Applying the AAA pattern 
+
+When you write tests, a good practice is to organize your code with the AAA pattern. Your code will therefore be arranged in the following three sections: 
+
+- **Arrange:** Initialize the objects or set the values that will be needed to run the test.
+- **Act:** Run the test with the arranged parameters.
+- **Assert:** Verify that the method being tested has produced the expected results.
+    
+    <br/>
+    
+**Tip:** Create a code snippet to facilitate the use of the test method consistently following the AAA pattern. For details, see [how to create a code snippet in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/walkthrough-creating-a-code-snippet).
+
+It also is a good practice to name your test methods with the following pattern:
        
     ``` "WorkToBeDone_WhatIsTested_ExpectedResult"  ```
     
     <br/>
     
-3. **Implementation.** We added to the existing solution a new ```Unit Test Project (.Net Framework)```. This project will be leveraged later in order to integrate the tests into the build process.
-    
-    *Add Visual Studio test project*
-        
-    <img alt="Add VS Test project" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_test_project.png">
-        
-    <br/>
-    
-    In the newly created ```unit test project```, we've added a class called ```TrendTests```. In this class we will create a method for each of the unit tests that we have defined earlier. 
+#### 3. Implementation 
 
-    **Note:** The Microsoft unit testing framework requires the following attributes: 
+We added to the existing solution a new ```Unit Test Project (.Net Framework)```. This project will be leveraged later in order to integrate the tests into the build process.
     
-    - ```[TestClass]``` for any class that contains test methods
-    - ```[TestMethod]``` for every method that will be run by the Test Explorer
+*Add Visual Studio test project*
+        
+<img alt="Add VS Test project" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_test_project.png">
+        
+    <br/>
+    
+In the newly created ```unit test project```, we've added a class called ```TrendTests```. In this class we will create a method for each of the unit tests that we have defined earlier. 
+
+**Note:** The Microsoft unit testing framework requires the following attributes: 
+    
+- ```[TestClass]``` for any class that contains test methods
+- ```[TestMethod]``` for every method that will be run by the Test Explorer
     
     <br/>
     
-    While we were building those methods, we realized we needed some shared logic in the class to perform the authentication against SharePoint Online.
+While we were building those methods, we realized we needed some shared logic in the class to perform the authentication against SharePoint Online.
     
-    We decided to add this logic in three additional methods that do not have any attributes so that the unit testing framework does not run them directly. We created the following methods: 
+We decided to add this logic in three additional methods that do not have any attributes so that the unit testing framework does not run them directly. We created the following methods: 
 
 {% highlight csharp %} 
     // The following code  manages the login to Sharepoint online that will be used by the test methods.
@@ -486,9 +492,9 @@ The unit tests also need to cover the back-end component of the application that
   
   <br/>
     
-  Let's look in detail at each one of the test methods for the back end of the application: 
-    
-    - Validating the instantiation of the ```Trend``` class.
+Let's look in detail at each one of the test methods for the back end of the application: 
+        
+- Validating the instantiation of the ```Trend``` class.
     
   The class has been created to enable trends in the application. A trend is represented by a SharePoint list with three fields. Our first unit test will verify that the constructor has the expected three fields.
 
@@ -509,9 +515,9 @@ The unit tests also need to cover the back-end component of the application that
     
     <br/>
     
-    - Verifying that the list can be created in SharePoint Online.
+- Verifying that the list can be created in SharePoint Online.
     
-    This will actually test the creation operation and fail if the operation does not succeed.
+  This will actually test the creation operation and fail if the operation does not succeed.
     
     {% highlight csharp %} 
     
@@ -531,9 +537,9 @@ The unit tests also need to cover the back-end component of the application that
     
     <br/>
     
-    - Deleting the list that was created.
+- Deleting the list that was created.
         
-    After running this set of tests, we will need to clean up the environment to be able to test again if necessary. Therefore, this method will be called upon to clean the SharePoint Online environment.
+  After running this set of tests, we will need to clean up the environment to be able to test again if necessary. Therefore, this method will be called upon to clean the SharePoint Online environment.
     
     {% highlight csharp %}
     
@@ -553,27 +559,27 @@ The unit tests also need to cover the back-end component of the application that
     
     <br/>
     
-4. **Ordering the tests**
+#### 4. Ordering the tests
     
-    In this hackfest, we had to be deterministic with the order of the tests so that the delete method would be called after the list was created and the test of the constructor would be called first.
+In this hackfest, we had to be deterministic with the order of the tests so that the delete method would be called after the list was created and the test of the constructor would be called first.
     
-    If you do not specify any order, the Microsoft unit testing framework will run the test in the order in which they appear in the code, but this is not the most convenient way to manage the order in which the tests are being run. With a right-click on the project, you can add an ordered test, as shown in the following screenshot.
+If you do not specify any order, the Microsoft unit testing framework will run the test in the order in which they appear in the code, but this is not the most convenient way to manage the order in which the tests are being run. With a right-click on the project, you can add an ordered test, as shown in the following screenshot.
     
-    *Adding an ordered test*
+*Adding an ordered test*
     
-    <img alt="Adding an ordered test" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_ordered_test.png">
-    
-    <br/>
-    
-    This lists all the test methods of the project and allows you to specify in which order they will run. You may have several ordered tests in the project and you can organize your ordered tests, which allows more granularity in how you manage them.
-    
-    *Organize your tests*
-    
-    <img alt="Organize your tests" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/ordered_test.png">
+<img alt="Adding an ordered test" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_ordered_test.png">
     
     <br/>
     
-    Those tests are now ready to be integrated into the build process of the application.
+This lists all the test methods of the project and allows you to specify in which order they will run. You may have several ordered tests in the project and you can organize your ordered tests, which allows more granularity in how you manage them.
+    
+*Organize your tests*
+    
+<img alt="Organize your tests" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/ordered_test.png">
+    
+    <br/>
+    
+Those tests are now ready to be integrated into the build process of the application.
     
 ### Automated UI tests / E2E tests ###
 
@@ -583,7 +589,7 @@ To implement the automated testing, we chose [*Selenium*](http://www.seleniumhq.
 
 **Implementation of the tests**
 
-1. **Create a new test project and add Selenium packages.**
+#### 1. Create a new test project and add Selenium packages
 
 To write Selenium-based tests, use the regular unit test framework of your choice. For instance, we created another new ```Unit Test Project (.Net Framework)```. 
     
@@ -601,14 +607,14 @@ Next, install a couple of **NuGet Packages** to the project:
 
 <br/>
 
--------------
+---------------------------------------------------------------------------
 | Package Name                | Purpose               
-|-----------------------------|------------------------
+|-----------------------------|-------------------------------------------------
 | Selenium.WebDriver          | .NET Bindings for Selenium WebDriver
 | Selenium.Support            | Helper Classes
 | Selenium.WebDriver.xxDriver        | Drivers for the different browser (Chrome, Edge, ...)
 | Selenium.PhantomJS.WebDriver          | Driver for the headless PhantomJS browser
--------------
+-------------------------------------------------------------------------------
 
 **What's the right Selenium driver to use?**
     
@@ -620,7 +626,7 @@ It's important to note that, since it's a regular browser UI, you will have to r
     
 In case you want to run them in the **VSTS Managed Build Agent**, you will have to use **PhantomJS**, which is a headless browser that can also run without an interactive UI session. So we are using the ``PhantomJSDriver`` below. To learn more about the capabilities and limitations of a hosted agent, see [Hosted agents](https://www.visualstudio.com/en-us/docs/build/concepts/agents/hosted).
 
-2. **Create a base class for Selenium tests**
+#### 2. Create a base class for Selenium tests
 
 Next we created a **common base class** for all Selenium tests. In the base class, we initialize the Selenium driver and maximize the window before each test. After each test, we tear down the driver.
 
@@ -656,7 +662,7 @@ We also create a ``WebDriverWait`` object, which can be used to find objects in 
 
 <br/>
 
-3. **Create a Selenium test for Azure Active Directory logon**
+#### 3. Create a Selenium test for Azure Active Directory logon
 
 Because **Lufthansa's Mydea** is using **Office 365**, users always have to log on first. So our first Selenium test had to automate log on to Office 365 and Azure Active Directory.
 
@@ -706,7 +712,7 @@ For better visibility, switch to the Chrome driver so you can actually see what 
 
 <br/>
 
-4. **Reuse logon across multiple tests**
+#### 4. Reuse logon across multiple tests
 
 Mydea always needs a logged-on user. As a result, run times of the tests become longer because you always have to log on first.
 
@@ -781,7 +787,7 @@ A final Selenium test of a AuthN protected page would then look like this:
 
 **Tip:** Have a look at **Selenium IDE**, which makes writing Selenium tests easier through a click recording functionality. We still found that we had to modify the recorded tests afterward anyways...
 
-5. **Using test parameters**
+#### 5. Using test parameters
 
 To make parameters such as username and password configurable, you have to use ``TestContext``.
 
@@ -886,6 +892,8 @@ To get started, we created a new release definition that runs the Visual Studio 
   This will filter and run only the tests with the corresponding attribute: ```[TestMethod, TestCategory("Backend")]```. 
 
 If the test is successful, the release process will move to the next stage. If the test fails, the release will fail and the faulty code will not move forward.
+
+<br/>
 
 #### 4. Automated UI tests ####
 
