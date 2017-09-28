@@ -409,7 +409,6 @@ We started by defining the minimum set of tests that are needed to verify that t
 - Verifying that we can create a list. 
 - Verifying that we can delete a list.
     
-<br/>
     
 #### 2. Applying the AAA pattern 
 
@@ -607,6 +606,8 @@ Next, install a couple of **NuGet Packages** to the project:
 | Selenium.WebDriver.xxDriver                    | Drivers for the different browser (Chrome, Edge, ...)  |
 | Selenium.PhantomJS.WebDriver                       | Driver for the headless PhantomJS browser  |
 
+
+<br/>
 
 **What's the right Selenium driver to use?**
     
