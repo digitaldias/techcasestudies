@@ -419,15 +419,15 @@ When you write tests, a good practice is to organize your code with the AAA patt
 - **Act:** Run the test with the arranged parameters.
 - **Assert:** Verify that the method being tested has produced the expected results.
     
-    <br/>
+<br/>
     
 **Tip:** Create a code snippet to facilitate the use of the test method consistently following the AAA pattern. For details, see [how to create a code snippet in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/walkthrough-creating-a-code-snippet).
 
 It also is a good practice to name your test methods with the following pattern:
        
-    ``` "WorkToBeDone_WhatIsTested_ExpectedResult"  ```
+``` "WorkToBeDone_WhatIsTested_ExpectedResult"  ```
     
-    <br/>
+<br/>
     
 #### 3. Implementation 
 
@@ -437,7 +437,7 @@ We added to the existing solution a new ```Unit Test Project (.Net Framework)```
         
 <img alt="Add VS Test project" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_test_project.png">
         
-    <br/>
+<br/>
     
 In the newly created ```unit test project```, we've added a class called ```TrendTests```. In this class we will create a method for each of the unit tests that we have defined earlier. 
 
@@ -446,7 +446,7 @@ In the newly created ```unit test project```, we've added a class called ```Tren
 - ```[TestClass]``` for any class that contains test methods
 - ```[TestMethod]``` for every method that will be run by the Test Explorer
     
-    <br/>
+<br/>
     
 While we were building those methods, we realized we needed some shared logic in the class to perform the authentication against SharePoint Online.
     
@@ -513,7 +513,7 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-    <br/>
+<br/>
     
 - Verifying that the list can be created in SharePoint Online.
     
@@ -535,7 +535,7 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-    <br/>
+<br/>
     
 - Deleting the list that was created.
         
@@ -557,7 +557,7 @@ Let's look in detail at each one of the test methods for the back end of the app
     
     {% endhighlight %}
     
-    <br/>
+<br/>
     
 #### 4. Ordering the tests
     
@@ -569,7 +569,7 @@ If you do not specify any order, the Microsoft unit testing framework will run t
     
 <img alt="Adding an ordered test" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/add_ordered_test.png">
     
-    <br/>
+<br/>
     
 This lists all the test methods of the project and allows you to specify in which order they will run. You may have several ordered tests in the project and you can organize your ordered tests, which allows more granularity in how you manage them.
     
@@ -577,7 +577,7 @@ This lists all the test methods of the project and allows you to specify in whic
     
 <img alt="Organize your tests" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/ordered_test.png">
     
-    <br/>
+<br/>
     
 Those tests are now ready to be integrated into the build process of the application.
     
@@ -607,14 +607,13 @@ Next, install a couple of **NuGet Packages** to the project:
 
 <br/>
 
----------------------------------------------------------------------------
-| Package Name                | Purpose               
-|-----------------------------|-------------------------------------------------
-| Selenium.WebDriver          | .NET Bindings for Selenium WebDriver
-| Selenium.Support            | Helper Classes
-| Selenium.WebDriver.xxDriver        | Drivers for the different browser (Chrome, Edge, ...)
-| Selenium.PhantomJS.WebDriver          | Driver for the headless PhantomJS browser
--------------------------------------------------------------------------------
+| Package Name                               | Purpose               |
+|-----------------------------|-------------------------------------------------|
+| Selenium.WebDriver                  | .NET Bindings for Selenium WebDriver   |
+| Selenium.Support                    | Helper Classes                         |
+| Selenium.WebDriver.xxDriver        | Drivers for the different browser (Chrome, Edge, ...)  |
+| Selenium.PhantomJS.WebDriver          | Driver for the headless PhantomJS browser  |
+
 
 **What's the right Selenium driver to use?**
     
@@ -753,7 +752,7 @@ We created another base class, which encapsulated the *logon* functionality, so 
 
 <br/>
 
-A final Selenium test of a AuthN protected page would then look like this:
+A final Selenium test of an AuthN protected page would then look like this:
 
 {% highlight csharp %}
 
@@ -912,6 +911,8 @@ Use version **2.\*** as described above and filter for ```TestCategory=UI``` (or
 Pass in parameters via ``Override test run parameters``. These are the same ones from the testcontext above. 
 
 **Note:** You can use $(..) build variables for the test run parameters as well.
+
+<br/>
 
 *Visual Studio Team Services test task running Selenium tests*
 
