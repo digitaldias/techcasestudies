@@ -7,7 +7,7 @@ date: 2017-09-27
 categories: [DevOps]
 color: "blue"
 image: "images/2017-06-15-Lufthansa/tile-mydeaOverview.png" #must be 440px wide
-excerpt: Lufthansa Industry Solutions had been delivering new features for its innovation management app without testing of any kind. They knew this needed to change to maintain quality and avoid regressions. Working with Microsoft, they explored best practices for implementing testing into their build-and-release pipeline.  
+excerpt: Lufthansa Industry Solutions had been delivering new features for its innovation management app without automated testing of any kind. They knew this needed to change to maintain quality and avoid regressions. Working with Microsoft, they explored best practices for implementing this testing into their build-and-release pipeline.  
 language: [English]
 verticals: [Hospitality & Travel]
 geolocation: [Europe]
@@ -16,7 +16,7 @@ geolocation: [Europe]
 
 <img alt="Lufthansa Logo" src="{{ site.baseurl }}/images/2017-06-15-Lufthansa/Lufthansa-Industry_Solutions-logo.png" width="300">
 
-Lufthansa Industry Solutions had been delivering new features for its innovation management app without testing of any kind. They knew this needed to change to maintain quality and avoid regressions. Working with Microsoft, they explored best practices for implementing testing into their build-and-release pipeline.
+Lufthansa Industry Solutions had been delivering new features for its innovation management app without automated testing of any kind. They knew this needed to change to maintain quality and avoid regressions. Working with Microsoft, they explored best practices for implementing automated testing into their build-and-release pipeline.
 
 **Key technologies used:**
 
