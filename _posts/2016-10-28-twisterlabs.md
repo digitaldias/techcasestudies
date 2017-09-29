@@ -21,7 +21,7 @@ At a recent two-day hackathon in San Francisco, Microsoft teamed up with Twister
 
 - [Rohit Jhangiani](https://twitter.com/RohitJhangiani) – CTO, Twister Labs 
 - [Francisco de la Peña](https://twitter.com/franontherocks) – CEO, Twister Labs 
-- [Lauren Tran](https:/twitter.com/LtkTran) – Technical Evangelist, Microsoft 
+- [Lauren Tran](https://twitter.com/LtkTran) – Technical Evangelist, Microsoft 
 - [Rita Zhang](https://twitter.com/ritazzhang) – Principal Software Development Engineer, Microsoft 
 - [David Makogon](https://twitter.com/dmakogon) – Senior Software Development Engineer, Microsoft 
 - [Bhargav Nookala](https://twitter.com/bhargav) – Senior Software Development Engineer, Microsoft 
