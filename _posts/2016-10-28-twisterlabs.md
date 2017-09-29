@@ -153,8 +153,7 @@ Twister Labs is an early-stage startup. Their application, Dostt, currently has 
 
 The following shows the end-user experience with Twilio and push notifications from the "chance encounter" feature:
 
-![Twilio texts to user]({{ site.baseurl }}/images/twisterlabs/twisterlabs-twilio.jpg?raw=true "Twilio texts to user")
-<img alt="Twilio texts to user" src="{{ site.baseurl }}/images/twisterlabs/twisterlabs-twilio.jpg" width="300">
+<img alt="Twilio texts to user" src="{{ site.baseurl }}/images/twisterlabs/twisterlabs-twilio.jpg" width="400">
 
 ## General lessons ##
 
